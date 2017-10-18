@@ -34,6 +34,11 @@ namespace TourabuTool
         // 此按鈕表示預設值為隨機鍛刀範圍
         private void ToukenButton_Click(object sender, EventArgs e)
         {
+            CharcoalNumOneTextBox.Text = "50";
+            SteelNumOneTextBox.Text = "50";
+            WaterNumOneTextBox.Text = "50";
+            StoneNumOneTextBox.Text = "50";
+
             CharcoalNumTwoTextBox.Text = "999";
             SteelNumTwoTextBox.Text = "999";
             WaterNumTwoTextBox.Text = "999";
@@ -44,6 +49,11 @@ namespace TourabuTool
         // 此按鈕表示預設值為隨機刀裝範圍
         private void TousouButton_Click(object sender, EventArgs e)
         {
+            CharcoalNumOneTextBox.Text = "50";
+            SteelNumOneTextBox.Text = "50";
+            WaterNumOneTextBox.Text = "50";
+            StoneNumOneTextBox.Text = "50";
+            
             CharcoalNumTwoTextBox.Text = "299";
             SteelNumTwoTextBox.Text = "299";
             WaterNumTwoTextBox.Text = "299";
