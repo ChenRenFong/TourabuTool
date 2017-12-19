@@ -19,7 +19,7 @@ namespace TourabuTool
         // 0：刀名
         // 1：刀種：短刀，脇差，打刀，太刀，大太刀，槍，薙刀
         // 2：極化：不可極化，開放極化
-        // 3：刀派：無刀派，三條，三池，貞宗，青江，長船，虎徹，村正，古備前，來，兼定，左文字，堀川，粟田口
+        // 3：刀派：無刀派，三條，三池，貞宗，青江，長船，虎徹，村正，古備前，來，兼定，左文字，堀川，粟田口，正宗
         private const int attributes = 4;
         // 用於全刀劍的資料庫儲存
         private string[,] List = new string[max, attributes];
@@ -48,6 +48,7 @@ namespace TourabuTool
             TouhaComboBox.Items.Add("左文字");
             TouhaComboBox.Items.Add("堀川");
             TouhaComboBox.Items.Add("粟田口");
+            TouhaComboBox.Items.Add("正宗");
         }
         // 取得刀劍亂舞全刀種的資料庫
         private void GetDataBase()
@@ -69,7 +70,7 @@ namespace TourabuTool
             List[15, 0] = "ソハヤノツルキ";   List[15, 1] = "太刀";      List[15, 2] = "不可極化";     List[15, 3] = "三池";
             List[17, 0] = "數珠丸恒次";       List[17, 1] = "太刀";      List[17, 2] = "不可極化";     List[17, 3] = "青江";
             List[19, 0] = "にっかり青江";     List[19, 1] = "脇差";      List[19, 2] = "開放極化";     List[19, 3] = "青江";
-            List[23, 0] = "鳴狐";             List[23, 1] = "打刀";      List[23, 2] = "不可極化";     List[23, 3] = "粟田口";
+            List[23, 0] = "鳴狐";             List[23, 1] = "打刀";      List[23, 2] = "開放極化";     List[23, 3] = "粟田口";
             List[25, 0] = "一期一振";         List[25, 1] = "太刀";      List[25, 2] = "不可極化";     List[25, 3] = "粟田口";
             List[27, 0] = "鯰尾藤四郎";       List[27, 1] = "脇差";      List[27, 2] = "開放極化";     List[27, 3] = "粟田口";
             List[29, 0] = "骨喰藤四郎";       List[29, 1] = "脇差";      List[29, 2] = "開放極化";     List[29, 3] = "粟田口";
@@ -97,27 +98,27 @@ namespace TourabuTool
             List[73, 0] = "燭台切光忠";       List[73, 1] = "太刀";      List[73, 2] = "不可極化";     List[73, 3] = "長船";
             List[77, 0] = "小竜景光";         List[77, 1] = "太刀";      List[77, 2] = "不可極化";     List[77, 3] = "長船";
             List[79, 0] = "江雪左文字";       List[79, 1] = "太刀";      List[79, 2] = "不可極化";     List[79, 3] = "左文字";
-            List[81, 0] = "宗三左文字";       List[81, 1] = "太刀";      List[81, 2] = "不可極化";     List[81, 3] = "左文字";
+            List[81, 0] = "宗三左文字";       List[81, 1] = "太刀";      List[81, 2] = "開放極化";     List[81, 3] = "左文字";
             List[83, 0] = "小夜左文字";       List[83, 1] = "短刀";      List[83, 2] = "開放極化";     List[83, 3] = "左文字";
             List[85, 0] = "加州清光";         List[85, 1] = "打刀";      List[85, 2] = "不可極化";     List[85, 3] = "無刀派";
-            List[87, 0] = "大和守安定";       List[87, 1] = "打刀";      List[87, 2] = "不可極化";     List[87, 3] = "無刀派";
+            List[87, 0] = "大和守安定";       List[87, 1] = "打刀";      List[87, 2] = "開放極化";     List[87, 3] = "無刀派";
             List[89, 0] = "歌仙兼定";         List[89, 1] = "打刀";      List[89, 2] = "不可極化";     List[89, 3] = "兼定";
-            List[91, 0] = "和泉守兼定";       List[91, 1] = "打刀";      List[91, 2] = "不可極化";     List[91, 3] = "兼定";
+            List[91, 0] = "和泉守兼定";       List[91, 1] = "打刀";      List[91, 2] = "開放極化";     List[91, 3] = "兼定";
             List[93, 0] = "陸奧守吉行";       List[93, 1] = "打刀";      List[93, 2] = "不可極化";     List[93, 3] = "無刀派";
             List[95, 0] = "山姥切國廣";       List[95, 1] = "打刀";      List[95, 2] = "不可極化";     List[95, 3] = "堀川";
             List[97, 0] = "山伏國廣";         List[97, 1] = "太刀";      List[97, 2] = "不可極化";     List[97, 3] = "堀川";
             List[99, 0] = "堀川國廣";         List[99, 1] = "脇差";      List[99, 2] = "開放極化";     List[99, 3] = "堀川";
             List[101, 0] = "蜂須賀虎徹";      List[101, 1] = "打刀";     List[101, 2] = "不可極化";    List[101, 3] = "虎徹";
             List[103, 0] = "浦島虎徹";        List[103, 1] = "脇差";     List[103, 2] = "開放極化";    List[103, 3] = "虎徹";
-            List[105, 0] = "長曾彌虎徹";      List[105, 1] = "打刀";     List[105, 2] = "不可極化";    List[105, 3] = "虎徹";
+            List[105, 0] = "長曾彌虎徹";      List[105, 1] = "打刀";     List[105, 2] = "開放極化";    List[105, 3] = "虎徹";
             List[107, 0] = "髭切";            List[107, 1] = "太刀";     List[107, 2] = "不可極化";    List[107, 3] = "無刀派";
             List[112, 0] = "膝丸";            List[112, 1] = "太刀";     List[112, 2] = "不可極化";    List[112, 3] = "無刀派";
-            List[116, 0] = "大俱利伽羅";      List[116, 1] = "打刀";     List[116, 2] = "不可極化";    List[116, 3] = "無刀派";
-            List[118, 0] = "へし切長谷部";    List[118, 1] = "打刀";     List[118, 2] = "不可極化";    List[118, 3] = "無刀派";
+            List[116, 0] = "大俱利伽羅";      List[116, 1] = "打刀";     List[116, 2] = "開放極化";    List[116, 3] = "無刀派";
+            List[118, 0] = "へし切長谷部";    List[118, 1] = "打刀";     List[118, 2] = "開放極化";    List[118, 3] = "無刀派";
             List[120, 0] = "不動行光";        List[120, 1] = "短刀";     List[120, 2] = "開放極化";    List[120, 3] = "無刀派";
             List[122, 0] = "獅子王";          List[122, 1] = "太刀";     List[122, 2] = "不可極化";    List[122, 3] = "無刀派";
             List[124, 0] = "小烏丸";          List[124, 1] = "太刀";     List[124, 2] = "不可極化";    List[124, 3] = "無刀派";
-            List[128, 0] = "同田貫正國";      List[128, 1] = "打刀";     List[128, 2] = "不可極化";    List[128, 3] = "無刀派";
+            List[128, 0] = "同田貫正國";      List[128, 1] = "打刀";     List[128, 2] = "開放極化";    List[128, 3] = "無刀派";
             List[130, 0] = "鶴丸國永";        List[130, 1] = "太刀";     List[130, 2] = "不可極化";    List[130, 3] = "無刀派";
             List[132, 0] = "太郎太刀";        List[132, 1] = "大太刀";   List[132, 2] = "不可極化";    List[132, 3] = "無刀派";
             List[134, 0] = "次郎太刀";        List[134, 1] = "大太刀";   List[134, 2] = "不可極化";    List[134, 3] = "無刀派";
@@ -128,6 +129,7 @@ namespace TourabuTool
             List[144, 0] = "篭手切江";        List[144, 1] = "脇差";     List[144, 2] = "不可極化";    List[144, 3] = "無刀派";
             List[146, 0] = "謙信景光";        List[146, 1] = "短刀";     List[146, 2] = "不可極化";    List[146, 3] = "長船";
             List[148, 0] = "小豆長光";        List[148, 1] = "太刀";     List[148, 2] = "不可極化";    List[148, 3] = "長船";
+            List[150, 0] = "日向正宗";        List[150, 1] = "短刀";     List[150, 2] = "不可極化";    List[150, 3] = "正宗";
         }
         // 當按鍵點下時，會先檢查當前標籤，再依據標籤執行抽籤動作
         private void BallotButton_Click(object sender, EventArgs e)
@@ -145,9 +147,9 @@ namespace TourabuTool
                     if (NoKiwameCheckBox.Checked == true || KiwameCheckBox.Checked == true)
                     {
                         // 防呆系統
-                        // 現版本只有短刀與脇差有極化
+                        // 現版本只有短刀、脇差、打刀有極化
                         if ((KiwameCheckBox.Checked == true && NoKiwameCheckBox.Checked == false) &&
-                            (TantouCheckBox.Checked == false && WakizasiCheckBox.Checked == false))
+                            (TantouCheckBox.Checked == false && WakizasiCheckBox.Checked == false && UchigatanaCheckBox.Checked == false))
                         {
                             InformationLabel.Text = "抽不到符合刀男！";
                         }
