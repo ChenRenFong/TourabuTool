@@ -51,7 +51,7 @@ namespace TourabuTool
                                  "預設與TourabuTool.exe同一資料夾下的Record資料夾中的record.txt即是。" + "\r\n" +
                                  "特殊指令：" + "\r\n" +
                                  "(poker)：會隨機替換成任一撲克牌花色。" + "\r\n" +
-                                 "(dice6)：會隨機替換成1至6任一數字。";
+                                 "(dice6)：會隨機替換成1至6任一數字。" + "\r\n";
         }
         // 有關於每次開起於上次結束的位置
         // 先於專案Settings中新增一個System.Drawing.Point的設定，範圍是User
@@ -59,6 +59,8 @@ namespace TourabuTool
         // 屬性欄視窗中上方有個小閃電，此為事件欄，打開它於FormClosing上點兩下，於程式碼中創建下方程式碼即可
         private void AskForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // 設定本子視窗關閉
+            MainForm.FormOpenList[2] = false;
             // 第一行mySettings後的變數要換成於專案Settings中設定的名稱
             MainForm.mySettings.AskPosition = new Point(this.Location.X, this.Location.Y);
             MainForm.mySettings.Save();
@@ -81,13 +83,16 @@ namespace TourabuTool
             finalOutputStr = FunctionPoker(inputStr);
             finalOutputStr = FunctionDice6(finalOutputStr);
 
-            // 先清空
-            OutputTextBox.Text = "";
+            // 先取得時間資訊的分隔線
+            string timeStr = "********************" + DateTime.Now.ToString() + "********************" + "\r\n";
             // 再寫入
-            OutputTextBox.Text = OutputTextBox.Text + finalOutputStr;
+            OutputTextBox.Text = OutputTextBox.Text + timeStr + finalOutputStr + "\r\n";
+            // 將結果框框的焦點移至最底
+            OutputTextBox.SelectionStart = OutputTextBox.Text.Length;
+            OutputTextBox.ScrollToCaret();
             // 同時輸出至紀錄檔
             // 先檢查紀錄檔是否存在，不存在就創一個
-            recheck:
+            outputRecheck:
             if (!System.IO.File.Exists(savePath))
             {
                 try
@@ -103,11 +108,11 @@ namespace TourabuTool
                         MainForm.mySettings.SavePath = savePath;
                         MainForm.mySettings.Save();
                     }
-                    goto recheck;
+                    goto outputRecheck;
                 }
             }
             System.IO.StreamWriter FileWriter = System.IO.File.AppendText(savePath);
-            FileWriter.WriteLine("********************" + DateTime.Now.ToString() + "********************" + "\r\n" + OutputTextBox.Text);
+            FileWriter.WriteLine(timeStr + finalOutputStr);
             FileWriter.Flush();
             FileWriter.Close();
         }
@@ -390,6 +395,63 @@ namespace TourabuTool
         private void SmallDiceButton_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject("(dice6)");
+        }
+        // 可以開啟之前的記錄存檔
+        private void ShowRecordButton_Click(object sender, EventArgs e)
+        {
+            // 指定只能開啟txt檔
+            DialogForSelectFile.Filter = "TXT files|*.txt";
+
+            if (DialogForSelectFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // 先檢測編碼類型
+                    string filePath = DialogForSelectFile.FileName.ToString();
+
+                    System.IO.StreamReader getEncoding = new System.IO.StreamReader(filePath);
+                    getEncoding.Peek();
+                    Encoding encoding = getEncoding.CurrentEncoding;
+
+                    // 檢測完畢，依據結果開檔
+                    System.IO.StreamReader file = new System.IO.StreamReader(filePath, encoding);
+                    
+                    OutputTextBox.Text = "";
+
+                    string line;
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        OutputTextBox.AppendText(line);
+                        OutputTextBox.AppendText("\r\n");
+                    }
+
+                    file.Close();  
+                }
+                catch
+                {
+                    MessageBox.Show("無法選擇此檔案。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+        // 清空顯示框框
+        private void ClearShowButton_Click(object sender, EventArgs e)
+        {
+            OutputTextBox.Text = "";
+        }
+        // 顯示基礎說明
+        private void ReadMeShowButton_Click(object sender, EventArgs e)
+        {
+            string readmeStr = "********************" + "********************" + "********************" + "\r\n" +
+                               "使用說明：" + "\r\n" +
+                               "按下\"GO\"可以將所有輸入進行保存，並對特殊指令進行處理。" + "\r\n" +
+                               "保存位置：" + "\r\n" +
+                               "預設與TourabuTool.exe同一資料夾下的Record資料夾中的record.txt即是。" + "\r\n" +
+                               "特殊指令：" + "\r\n" +
+                               "(poker)：會隨機替換成任一撲克牌花色。" + "\r\n" +
+                               "(dice6)：會隨機替換成1至6任一數字。" + "\r\n";
+            
+            OutputTextBox.AppendText(readmeStr);
         }
     }
 }

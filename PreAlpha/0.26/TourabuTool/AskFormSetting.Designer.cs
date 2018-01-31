@@ -41,17 +41,17 @@
             this.messageText.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.messageText.Location = new System.Drawing.Point(12, 9);
             this.messageText.Name = "messageText";
-            this.messageText.Size = new System.Drawing.Size(99, 17);
+            this.messageText.Size = new System.Drawing.Size(125, 17);
             this.messageText.TabIndex = 0;
-            this.messageText.Text = "目前存檔路徑：";
+            this.messageText.Text = "目前記錄儲存路徑：";
             // 
             // pathText
             // 
-            this.pathText.Location = new System.Drawing.Point(117, 9);
+            this.pathText.Location = new System.Drawing.Point(143, 9);
             this.pathText.Name = "pathText";
             this.pathText.ReadOnly = true;
             this.pathText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pathText.Size = new System.Drawing.Size(348, 22);
+            this.pathText.Size = new System.Drawing.Size(322, 22);
             this.pathText.TabIndex = 1;
             this.pathText.TabStop = false;
             // 

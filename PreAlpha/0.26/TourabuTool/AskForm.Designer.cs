@@ -42,6 +42,9 @@
             this.SmallDiceButton = new System.Windows.Forms.Button();
             this.SettingButton = new System.Windows.Forms.Button();
             this.DialogForSelectFile = new System.Windows.Forms.OpenFileDialog();
+            this.ShowRecordButton = new System.Windows.Forms.Button();
+            this.ClearShowButton = new System.Windows.Forms.Button();
+            this.ReadMeShowButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // AskButton
@@ -72,7 +75,7 @@
             // 
             this.OutputTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OutputTextBox.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.OutputTextBox.Location = new System.Drawing.Point(12, 321);
+            this.OutputTextBox.Location = new System.Drawing.Point(12, 355);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ReadOnly = true;
@@ -198,11 +201,50 @@
             this.SettingButton.UseVisualStyleBackColor = true;
             this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click);
             // 
+            // ShowRecordButton
+            // 
+            this.ShowRecordButton.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ShowRecordButton.Location = new System.Drawing.Point(12, 326);
+            this.ShowRecordButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ShowRecordButton.Name = "ShowRecordButton";
+            this.ShowRecordButton.Size = new System.Drawing.Size(68, 22);
+            this.ShowRecordButton.TabIndex = 14;
+            this.ShowRecordButton.Text = "顯示紀錄";
+            this.ShowRecordButton.UseVisualStyleBackColor = true;
+            this.ShowRecordButton.Click += new System.EventHandler(this.ShowRecordButton_Click);
+            // 
+            // ClearShowButton
+            // 
+            this.ClearShowButton.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ClearShowButton.Location = new System.Drawing.Point(86, 326);
+            this.ClearShowButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ClearShowButton.Name = "ClearShowButton";
+            this.ClearShowButton.Size = new System.Drawing.Size(68, 22);
+            this.ClearShowButton.TabIndex = 15;
+            this.ClearShowButton.Text = "清空顯示";
+            this.ClearShowButton.UseVisualStyleBackColor = true;
+            this.ClearShowButton.Click += new System.EventHandler(this.ClearShowButton_Click);
+            // 
+            // ReadMeShowButton
+            // 
+            this.ReadMeShowButton.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ReadMeShowButton.Location = new System.Drawing.Point(160, 326);
+            this.ReadMeShowButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ReadMeShowButton.Name = "ReadMeShowButton";
+            this.ReadMeShowButton.Size = new System.Drawing.Size(68, 22);
+            this.ReadMeShowButton.TabIndex = 16;
+            this.ReadMeShowButton.Text = "顯示說明";
+            this.ReadMeShowButton.UseVisualStyleBackColor = true;
+            this.ReadMeShowButton.Click += new System.EventHandler(this.ReadMeShowButton_Click);
+            // 
             // AskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 611);
+            this.ClientSize = new System.Drawing.Size(894, 645);
+            this.Controls.Add(this.ReadMeShowButton);
+            this.Controls.Add(this.ClearShowButton);
+            this.Controls.Add(this.ShowRecordButton);
             this.Controls.Add(this.SettingButton);
             this.Controls.Add(this.SmallDiceButton);
             this.Controls.Add(this.PokerDiceButton);
@@ -249,5 +291,8 @@
         private System.Windows.Forms.Button SmallDiceButton;
         private System.Windows.Forms.Button SettingButton;
         private System.Windows.Forms.OpenFileDialog DialogForSelectFile;
+        private System.Windows.Forms.Button ShowRecordButton;
+        private System.Windows.Forms.Button ClearShowButton;
+        private System.Windows.Forms.Button ReadMeShowButton;
     }
 }

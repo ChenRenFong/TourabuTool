@@ -18,10 +18,10 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2018年1月30日" + "\r\n" +
+            InformationTextBox.Text = "2018年1月31日" + "\r\n" +
                                       "改版：0.26：" + "\r\n" +
-                                      "修正子視窗可以於上次關閉的位置再啟動的功能。" + "\r\n" +
-                                      "本丸記事：新增可以更改記錄儲存的位置與檔名的功能。" + "\r\n\r\n" + 
+                                      "修正了子視窗部分有問題的功能。" + "\r\n" +
+                                      "本丸記事：可以自訂記錄檔的儲存路徑與檔名，結果顯示的部分新增了數個操作功能，並且對結果的顯示做了些許調整。" + "\r\n\r\n" + 
                 
                                       "2017年12月19日" + "\r\n" +
                                       "新增刀男：150 日向正宗。" + "\r\n\r\n" + 
@@ -109,6 +109,8 @@ namespace TourabuTool
         // 屬性欄視窗中上方有個小閃電，此為事件欄，打開它於FormClosing上點兩下，於程式碼中創建下方程式碼即可
         private void ReadMeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // 設定本子視窗關閉
+            MainForm.FormOpenList[3] = false;
             // 第一行mySettings後的變數要換成於專案Settings中設定的名稱
             MainForm.mySettings.ReadMePosition = new Point(this.Location.X, this.Location.Y);
             MainForm.mySettings.Save();

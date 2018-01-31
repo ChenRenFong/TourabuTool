@@ -230,6 +230,8 @@ namespace TourabuTool
         // 屬性欄視窗中上方有個小閃電，此為事件欄，打開它於FormClosing上點兩下，於程式碼中創建下方程式碼即可
         private void BallotForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // 設定本子視窗關閉
+            MainForm.FormOpenList[1] = false;
             // 第一行mySettings後的變數要換成於專案Settings中設定的名稱
             MainForm.mySettings.BallotPosition = new Point(this.Location.X, this.Location.Y);
             MainForm.mySettings.Save();
