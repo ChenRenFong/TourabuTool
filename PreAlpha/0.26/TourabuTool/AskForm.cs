@@ -23,6 +23,14 @@ namespace TourabuTool
         List<String> ClearUpdoList = new List<String>();
         // 存檔路徑
         public static String savePath = @"Record\record.txt";
+        // 說明文字串
+        string readme = "使用說明：" + "\r\n" +
+                        "按下\"GO\"可以將所有輸入進行保存，並對特殊指令進行處理。" + "\r\n" +
+                        "記錄保存位置：" + "\r\n" +
+                        "預設與TourabuTool.exe同一資料夾下的Record資料夾中的record.txt即是。" + "\r\n" +
+                        "特殊指令：" + "\r\n" +
+                        "(poker)：會隨機替換成任一撲克牌花色。" + "\r\n" +
+                        "(dice6)：會隨機替換成1至6任一數字。" + "\r\n";  
 
         public AskForm()
         {
@@ -31,7 +39,7 @@ namespace TourabuTool
         // 啟動時必執行一次的初始化作業
         private void AskForm_Load(object sender, EventArgs e)
         {
-            if (MainForm.mySettings.SavePath == @"Record\record.txt")
+            if (MainForm.mySettings.SavePath == "@\"Record\\record.txt\"")
             {
                 // 初運行，將相對路徑改成絕對路徑
                 savePath = System.Environment.CurrentDirectory + "\\Record\\record.txt";
@@ -45,13 +53,7 @@ namespace TourabuTool
             UpdoList.Clear();
             ClearUpdoList.Clear();
 
-            OutputTextBox.Text = "使用說明：" + "\r\n" +
-                                 "按下\"GO\"可以將所有輸入進行保存，並對特殊指令進行處理。" + "\r\n" +
-                                 "保存位置：" + "\r\n" +
-                                 "預設與TourabuTool.exe同一資料夾下的Record資料夾中的record.txt即是。" + "\r\n" +
-                                 "特殊指令：" + "\r\n" +
-                                 "(poker)：會隨機替換成任一撲克牌花色。" + "\r\n" +
-                                 "(dice6)：會隨機替換成1至6任一數字。" + "\r\n";
+            OutputTextBox.Text = readme;
         }
         // 有關於每次開起於上次結束的位置
         // 先於專案Settings中新增一個System.Drawing.Point的設定，範圍是User
@@ -442,16 +444,7 @@ namespace TourabuTool
         // 顯示基礎說明
         private void ReadMeShowButton_Click(object sender, EventArgs e)
         {
-            string readmeStr = "********************" + "********************" + "********************" + "\r\n" +
-                               "使用說明：" + "\r\n" +
-                               "按下\"GO\"可以將所有輸入進行保存，並對特殊指令進行處理。" + "\r\n" +
-                               "保存位置：" + "\r\n" +
-                               "預設與TourabuTool.exe同一資料夾下的Record資料夾中的record.txt即是。" + "\r\n" +
-                               "特殊指令：" + "\r\n" +
-                               "(poker)：會隨機替換成任一撲克牌花色。" + "\r\n" +
-                               "(dice6)：會隨機替換成1至6任一數字。" + "\r\n";
-            
-            OutputTextBox.AppendText(readmeStr);
+            OutputTextBox.AppendText("********************" + "********************" + "********************" + "\r\n" + readme);
         }
     }
 }
