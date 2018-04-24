@@ -18,7 +18,10 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2018年4月17日" + "\r\n" +
+            InformationTextBox.Text = "2018年4月24日" + "\r\n" +
+                                      "新增刀男：154 南泉一文字。" + "\r\n\r\n" + 
+                                      
+                                      "2018年4月17日" + "\r\n" +
                                       "改版：0.27：" + "\r\n" +
                                       "新增刀男：152 靜形薙刀。" + "\r\n" +
                                       "本丸抽籤：考量今後全刀劍都會極化，因此摘除以極化為標籤進行抽籤的功能，並新增懶人按鈕。" + "\r\n" +
