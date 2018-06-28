@@ -18,7 +18,10 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2018年4月24日" + "\r\n" +
+            InformationTextBox.Text = "2018年6月28日" + "\r\n" +
+                                      "新增刀男：156 千代金丸。" + "\r\n\r\n" + 
+
+                                      "2018年4月24日" + "\r\n" +
                                       "新增刀男：154 南泉一文字。" + "\r\n\r\n" + 
                                       
                                       "2018年4月17日" + "\r\n" +
