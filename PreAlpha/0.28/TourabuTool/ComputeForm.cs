@@ -13,8 +13,18 @@ namespace TourabuTool
     {
         // 刀劍等級的上限+1
         private const int maxLv = 100;
+        // 目前所有可出陣地圖的總數量，不含活動地圖
+        // +2：6-4地圖有三種變化
+        // +2：7-4地圖有三種變化
+        private const int maps = 7*4 +2 +2;
         // 儲存隊中最高等級刀劍男士與對應的檢非違使經驗值之資料庫資料
         private int[,] PoliceExpList = new int[maxLv, 1];
+        // 地圖經驗清單
+        // 0：地圖代號
+        // 1：一般戰鬥平均單場經驗
+        // 2：Boss戰鬥平均單場經驗
+        // 3：地圖中平均戰鬥場數
+        private string[,] MapExpList = new string[maps, 4];
         
         public ComputeForm()
         {
@@ -137,6 +147,63 @@ namespace TourabuTool
             PoliceExpList[97, 0] = 533;
             PoliceExpList[98, 0] = 539;
             PoliceExpList[99, 0] = 544;
+            // 初始化
+            for (int num = 0; num < maps; num++)
+            {
+                MapExpList[num, 0] = "";
+                MapExpList[num, 1] = "0";
+                MapExpList[num, 2] = "0";
+                MapExpList[num, 3] = "1";
+            }
+            // 平均經驗算式：加總（經驗 *（該經驗的所有場數 / 該地圖中所有戰鬥場數）），注意！一般戰鬥與Boss戰鬥為分開計算！
+            // 平均場數算式：( 走到底的最大場數 + 走到底的最小場數 ) / 2，注意！並不將Boss戰鬥加入場數計算中！
+            // 1圖
+            MapExpList[0, 0] = "1-1";       MapExpList[0, 1] = "30";      MapExpList[0, 2] = "90";      MapExpList[0, 3] = "1.5";
+            MapExpList[1, 0] = "1-2";       MapExpList[1, 1] = "50";      MapExpList[1, 2] = "150";     MapExpList[1, 3] = "1";
+            MapExpList[2, 0] = "1-3";       MapExpList[2, 1] = "80";      MapExpList[2, 2] = "240";     MapExpList[2, 3] = "1.5";
+            MapExpList[3, 0] = "1-4";       MapExpList[3, 1] = "100";     MapExpList[3, 2] = "300";     MapExpList[3, 3] = "2.5";
+            // 2圖
+            MapExpList[4, 0] = "2-1";       MapExpList[4, 1] = "120";     MapExpList[4, 2] = "360";     MapExpList[4, 3] = "1.5";
+            MapExpList[5, 0] = "2-2";       MapExpList[5, 1] = "140";     MapExpList[5, 2] = "420";     MapExpList[5, 3] = "2";
+            MapExpList[6, 0] = "2-3";       MapExpList[6, 1] = "170";     MapExpList[6, 2] = "510";     MapExpList[6, 3] = "2.5";
+            MapExpList[7, 0] = "2-4";       MapExpList[7, 1] = "200";     MapExpList[7, 2] = "600";     MapExpList[7, 3] = "2.5";
+            // 3圖
+            MapExpList[8, 0] = "3-1";       MapExpList[8, 1] = "230";     MapExpList[8, 2] = "690";     MapExpList[8, 3] = "1.5";
+            MapExpList[9, 0] = "3-2";       MapExpList[9, 1] = "250";     MapExpList[9, 2] = "750";     MapExpList[9, 3] = "2.5";
+            MapExpList[10, 0] = "3-3";      MapExpList[10, 1] = "280";    MapExpList[10, 2] = "840";    MapExpList[10, 3] = "2.5";
+            MapExpList[11, 0] = "3-4";      MapExpList[11, 1] = "320";    MapExpList[11, 2] = "960";    MapExpList[11, 3] = "2.5";
+            // 4圖
+            MapExpList[12, 0] = "4-1";      MapExpList[12, 1] = "360";    MapExpList[12, 2] = "1080";   MapExpList[12, 3] = "3";
+            MapExpList[13, 0] = "4-2";      MapExpList[13, 1] = "390";    MapExpList[13, 2] = "1170";   MapExpList[13, 3] = "3.5";
+            MapExpList[14, 0] = "4-3";      MapExpList[14, 1] = "400";    MapExpList[14, 2] = "1200";   MapExpList[14, 3] = "4.5";
+            MapExpList[15, 0] = "4-4";      MapExpList[15, 1] = "420";    MapExpList[15, 2] = "1260";   MapExpList[15, 3] = "5";
+            // 5圖
+            MapExpList[16, 0] = "5-1";      MapExpList[16, 1] = "440";    MapExpList[16, 2] = "1320";   MapExpList[16, 3] = "4.5";
+            MapExpList[17, 0] = "5-2";      MapExpList[17, 1] = "460";    MapExpList[17, 2] = "1380";   MapExpList[17, 3] = "3.5";
+            MapExpList[18, 0] = "5-3";      MapExpList[18, 1] = "480";    MapExpList[18, 2] = "1440";   MapExpList[18, 3] = "4.5";
+            MapExpList[19, 0] = "5-4";      MapExpList[19, 1] = "500";    MapExpList[19, 2] = "1500";   MapExpList[19, 3] = "5.5";
+            // 6圖
+            // 6-2一般戰鬥：520*(7/16) + 250*(7/16) + 550*(1/16) + 580*(1/16)
+            // 6-3一般戰鬥：530*(4/13) + 270*(6/13) + 560*(1/13) + 590*(1/13) + 620*(1/13)
+            // 6-4-1一般戰鬥：530*(1/7) + 270*(4/7) + 560*(2/7)
+            // 6-4-2一般戰鬥：530*(1/11) + 270*(4/11) + 560*(6/11)
+            // 6-4-3一般戰鬥：220*(6/16) + 190*(10/16)
+            MapExpList[20, 0] = "6-1";      MapExpList[20, 1] = "510";    MapExpList[20, 2] = "1600";   MapExpList[20, 3] = "4.5";
+            MapExpList[21, 0] = "6-2";      MapExpList[21, 1] = "407.5";  MapExpList[21, 2] = "1620";   MapExpList[21, 3] = "7.5";
+            MapExpList[22, 0] = "6-3";      MapExpList[22, 1] = "423.8";  MapExpList[22, 2] = "1640";   MapExpList[22, 3] = "9.5";
+            MapExpList[23, 0] = "6-4-1";    MapExpList[23, 1] = "390";    MapExpList[23, 2] = "1060";   MapExpList[23, 3] = "6";
+            MapExpList[24, 0] = "6-4-2";    MapExpList[24, 1] = "451.8";  MapExpList[24, 2] = "1060";   MapExpList[24, 3] = "7";
+            MapExpList[25, 0] = "6-4-3";    MapExpList[25, 1] = "201.3";  MapExpList[25, 2] = "1880";   MapExpList[25, 3] = "8";
+            // 7圖
+            // 7-1一般戰鬥：300*(3/11) + 400*(4/11) + 1000*(4/11)
+            // 7-2一般戰鬥：200*(1/13) + 300*(2/13) + 400*(3/13) + 550*(4/13) + 1000*(3/13)
+            // 7-3一般戰鬥：500*(8/13) + 600*(2/13) + 1000*(2/13) + 1500*(1/13)
+            MapExpList[26, 0] = "7-1";      MapExpList[26, 1] = "590.9";  MapExpList[26, 2] = "3000";   MapExpList[26, 3] = "4";
+            MapExpList[27, 0] = "7-2";      MapExpList[27, 1] = "553.8";  MapExpList[27, 2] = "3000";   MapExpList[27, 3] = "5";
+            MapExpList[28, 0] = "7-3";      MapExpList[28, 1] = "669.2";  MapExpList[28, 2] = "3000";   MapExpList[28, 3] = "5";
+            MapExpList[29, 0] = "7-4-L";    MapExpList[29, 1] = "400";    MapExpList[29, 2] = "2000";   MapExpList[29, 3] = "10";
+            MapExpList[30, 0] = "7-4-M";    MapExpList[30, 1] = "800";    MapExpList[30, 2] = "4000";   MapExpList[30, 3] = "7";
+            MapExpList[31, 0] = "7-4-S";    MapExpList[31, 1] = "1200";   MapExpList[31, 2] = "6000";   MapExpList[31, 3] = "4";
         }
         // 對介面內容做出初始化設定
         private void InitialSetting()
@@ -219,6 +286,8 @@ namespace TourabuTool
 
             // 完成所有出陣次數總需時：每次地圖進出需時 * 進出地圖次數
             AllTime = MapTime * int.Parse(MapCountTextBox.Text);
+
+            // 反之，知道需時，求進出地圖次數：需時 / ( 單場戰鬥需時 * 該地圖平均戰鬥場數 )
 
             // 隊長
 
