@@ -34,3 +34,4 @@ C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTo
 C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.csproj.GenerateResource.Cache
 C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.AskFormSetting.resources
 C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.ComputeForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.ComputeFormFunction.resources

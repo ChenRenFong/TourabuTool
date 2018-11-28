@@ -205,15 +205,17 @@ namespace TourabuTool
             MapExpList[30, 0] = "7-4-M";    MapExpList[30, 1] = "800";    MapExpList[30, 2] = "4000";   MapExpList[30, 3] = "7";
             MapExpList[31, 0] = "7-4-S";    MapExpList[31, 1] = "1200";   MapExpList[31, 2] = "6000";   MapExpList[31, 3] = "4";
         }
-        // 對介面內容做出初始化設定
+        // 對界面內容做出初始化設定
         private void InitialSetting()
         {
+            // 隊員數量
             for (int num = 1; num <= 6; num++)
             {
                 MemberNumberComboBox.Items.Add(num.ToString());
             }
             MemberNumberComboBox.Text = "6";           
 
+            // 戰鬥評分
             BattleScoreComboBox.Items.Add("S");
             BattleScoreComboBox.Items.Add("A");
             BattleScoreComboBox.Items.Add("B");
@@ -223,23 +225,72 @@ namespace TourabuTool
 
             BattleScoreComboBox.Text = "A";
 
+            // 最刀隊員等級
             for (int num = 1; num <= 99; num++)
             {
                 MaxMemberLevelComboBox.Items.Add(num.ToString());
             }
-            MaxMemberLevelComboBox.Text = "82";
+            MaxMemberLevelComboBox.Text = "84";
 
+            // 使用者操作模式
             OperateComboBox.Items.Add("懶人模式");
             OperateComboBox.Items.Add("自定義模式");
 
             // 由於懶人模式目前未實現完成，因此預設模式暫時為自定義模式
-            // OperateComboBox.Text = "懶人模式";
-            OperateComboBox.Text = "自定義模式";
+            OperateComboBox.Text = "懶人模式";
+            // OperateComboBox.Text = "自定義模式";
+
+            // 地圖代號
+            for (int mapTime = 1; mapTime <= 7; mapTime++) 
+            {
+                for (int mapNo = 1; mapNo <= 4; mapNo++)
+                {
+                    MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString());
+                    
+                    if (mapTime == 6 && mapNo == 4)
+                    {
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-1");
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-2");
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-3");
+                    }
+                    if (mapTime == 7 && mapNo == 4)
+                    {
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-L");
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-M");
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-S");
+                    }
+                }
+            }
+
+            MapComboBox.Text = "7-4-L";
+
+            // 計算需求
+            TypeComboBox.Items.Add("總需時");
+            TypeComboBox.Items.Add("總次數");
+
+            TypeComboBox.Text = "總需時";
         }
         // 防呆檢測
         private void Checker()
         {
-
+            if (OperateComboBox.Text == "懶人模式")
+            {
+                if (TypeComboBox.Text == "總需時")
+                {
+                }
+                else if (TypeComboBox.Text == "總次數")
+                {
+                }
+            }
+            else if (OperateComboBox.Text == "自定義模式")
+            {
+                if (TypeComboBox.Text == "總需時")
+                {
+                }
+                else if (TypeComboBox.Text == "總次數")
+                {
+                }
+            }
         }
         // 計算結果
         // 結果：隊員平均搶譽機率、每次地圖進出需時、完成所有出陣次數總需時、
@@ -250,9 +301,42 @@ namespace TourabuTool
         {
             Checker();
 
-            double MvpRate, BattleRankScore, MapTime, AllTime, PoliceExp;
+            if (OperateComboBox.Text == "懶人模式")
+            {
+                ComputeSimple();
+            }
+            else if (OperateComboBox.Text == "自定義模式")
+            {
+                ComputeByUser();
+            }
+        }
+        // 詳細計算：懶人模式
+        private void ComputeSimple()
+        {
+            // 取得當前地圖數據
+            // 地圖經驗清單詳細
+            // 0：地圖代號
+            // 1：一般戰鬥平均單場經驗
+            // 2：Boss戰鬥平均單場經驗
+            // 3：地圖中平均戰鬥場數
+            int mapNo = -1;
+            for (int i = 0; i < maps; i++)
+            {
+                if (MapComboBox.Text == MapExpList[i, 0]) 
+                {
+                    mapNo = i;
+                }
+            }
+
+            double MvpRate, BattleRankScore, MapTime, AllTime, AllCount, PoliceExp;
             int LeaderOneBattleExp, LeaderOneMapExp, LeaderAllExp, LeaderOnePoliceExp, LeaderOneBossExp;
             int OneBattleExp, OneMapExp, AllExp, OnePoliceExp, OneBossExp;
+
+            // 初始話
+            AllTime = 0;
+            AllCount = 0;
+            LeaderAllExp = 0;
+            AllExp = 0;
 
             // 暫存器
             double LeaderMvpExp, LeaderNoMvpExp, MvpExp, NoMvpExp;
@@ -261,7 +345,194 @@ namespace TourabuTool
             MvpRate = 1.0 / double.Parse(MemberNumberComboBox.Text);
 
             // 戰鬥評價加成
-            if (BattleScoreComboBox.Text == "S" | BattleScoreComboBox.Text == "A") 
+            if (BattleScoreComboBox.Text == "S" | BattleScoreComboBox.Text == "A")
+            {
+                BattleRankScore = 1.2;
+            }
+            else if (BattleScoreComboBox.Text == "B" | BattleScoreComboBox.Text == "C" | BattleScoreComboBox.Text == "一騎打")
+            {
+                BattleRankScore = 1.0;
+            }
+            else if (BattleScoreComboBox.Text == "敗北")
+            {
+                BattleRankScore = 0.8;
+            }
+            else
+            {
+                BattleRankScore = 0;
+            }
+
+            // 對應檢非違使經驗
+            PoliceExp = PoliceExpList[int.Parse(MaxMemberLevelComboBox.Text), 0];
+
+            // 每次地圖進出需時：單場戰鬥需時 * 該地圖平均戰鬥場數
+            MapTime = double.Parse(OneBattleTimeTextBox.Text) * double.Parse(MapExpList[mapNo, 3]);
+
+            if (TypeComboBox.Text == "總需時")
+            {
+                // 完成所有出陣次數總需時：每次地圖進出需時 * 進出地圖次數
+                AllTime = MapTime * int.Parse(MapCountTextBox.Text);
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                // 反之，知道需時，求進出地圖次數：需時 / ( 單場戰鬥需時 * 該地圖平均戰鬥場數 )
+                AllCount = int.Parse(BattleTimeTextBox.Text) / (double.Parse(OneBattleTimeTextBox.Text) * double.Parse(MapExpList[mapNo, 3]));
+            }          
+
+            // 隊長
+
+            // 隊長單場戰鬥經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場戰鬥平均經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場戰鬥平均經驗 * 隊長加成 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            LeaderMvpExp = double.Parse(MapExpList[mapNo, 1]) * 1.5 * 2 * BattleRankScore * (1 * MvpRate);
+            LeaderNoMvpExp = double.Parse(MapExpList[mapNo, 1]) * 1.5 * BattleRankScore * (1 * (1 - MvpRate));
+            LeaderOneBattleExp = (int)((LeaderMvpExp + LeaderNoMvpExp) * double.Parse(ExtraInformationNormalTextBox.Text));
+
+            // 隊長單次地圖經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場戰鬥平均經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場戰鬥平均經驗 * 隊長加成 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            LeaderMvpExp = double.Parse(MapExpList[mapNo, 1]) * 1.5 * 2 * BattleRankScore * (double.Parse(MapExpList[mapNo, 3]) * MvpRate);
+            LeaderNoMvpExp = double.Parse(MapExpList[mapNo, 1]) * 1.5 * BattleRankScore * (double.Parse(MapExpList[mapNo, 3]) * (1 - MvpRate));
+            LeaderOneMapExp = (int)((LeaderMvpExp + LeaderNoMvpExp) * double.Parse(ExtraInformationNormalTextBox.Text));
+
+            if (TypeComboBox.Text == "總需時")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                LeaderAllExp = LeaderOneMapExp * int.Parse(MapCountTextBox.Text);
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                LeaderAllExp = (int)((double)LeaderOneMapExp * AllCount);
+            }
+
+            // 隊長單場檢非違使經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場檢非違使經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場檢非違使經驗 * 隊長加成 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            LeaderMvpExp = PoliceExp * 1.5 * 2 * BattleRankScore * (1 * MvpRate);
+            LeaderNoMvpExp = PoliceExp * 1.5 * BattleRankScore * (1 * (1 - MvpRate));
+            LeaderOnePoliceExp = (int)((LeaderMvpExp + LeaderNoMvpExp) * double.Parse(ExtraInformationPoliceTextBox.Text));
+
+            // 隊長單場BOSS經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場BOSS平均經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場BOSS平均經驗 * 隊長加成 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            LeaderMvpExp = double.Parse(MapExpList[mapNo, 2]) * 1.5 * 2 * BattleRankScore * (1 * MvpRate);
+            LeaderNoMvpExp = double.Parse(MapExpList[mapNo, 2]) * 1.5 * BattleRankScore * (1 * (1 - MvpRate));
+            LeaderOneBossExp = (int)((LeaderMvpExp + LeaderNoMvpExp) * double.Parse(ExtraInformationNormalBossTextBox.Text));
+
+            // 隊員
+
+            // 隊員單場戰鬥經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場戰鬥平均經驗 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場戰鬥平均經驗 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            MvpExp = double.Parse(MapExpList[mapNo, 1]) * 2 * BattleRankScore * (1 * MvpRate);
+            NoMvpExp = double.Parse(MapExpList[mapNo, 1]) * BattleRankScore * (1 * (1 - MvpRate));
+            OneBattleExp = (int)((MvpExp + NoMvpExp) * double.Parse(ExtraInformationNormalTextBox.Text));
+
+            // 隊員單次地圖經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場戰鬥平均經驗 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場戰鬥平均經驗 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            MvpExp = double.Parse(MapExpList[mapNo, 1]) * 2 * BattleRankScore * (double.Parse(MapExpList[mapNo, 3]) * MvpRate);
+            NoMvpExp = double.Parse(MapExpList[mapNo, 1]) * BattleRankScore * (double.Parse(MapExpList[mapNo, 3]) * (1 - MvpRate));
+            OneMapExp = (int)((MvpExp + NoMvpExp) * double.Parse(ExtraInformationNormalTextBox.Text));
+
+            if (TypeComboBox.Text == "總需時")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                AllExp = OneMapExp * int.Parse(MapCountTextBox.Text);
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                AllExp = (int)((double)OneMapExp * AllCount);
+            }
+
+            // 隊員單場檢非違使經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場檢非違使經驗 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場檢非違使經驗 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            MvpExp = PoliceExp * 2 * BattleRankScore * (1 * MvpRate);
+            NoMvpExp = PoliceExp * BattleRankScore * (1 * (1 - MvpRate));
+            OnePoliceExp = (int)((MvpExp + NoMvpExp) * double.Parse(ExtraInformationPoliceTextBox.Text));
+
+            // 隊員單場BOSS經驗：(搶譽經驗+非搶譽經驗) * 額外加成
+            // 搶譽經驗：單場BOSS平均經驗 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
+            // 非搶譽經驗：單場BOSS平均經驗 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
+            MvpExp = double.Parse(MapExpList[mapNo, 2]) * 2 * BattleRankScore * (1 * MvpRate);
+            NoMvpExp = double.Parse(MapExpList[mapNo, 2]) * BattleRankScore * (1 * (1 - MvpRate));
+            OneBossExp = (int)((MvpExp + NoMvpExp) * double.Parse(ExtraInformationNormalBossTextBox.Text));
+
+            if (TypeComboBox.Text == "總需時")
+            {
+                OutputTextBox.Text = "總需時： " + AllTime.ToString() + "分鐘" + "\r\n" +
+                                     "單次地圖需時： " + MapTime.ToString() + "分鐘" + "\r\n" +
+                                     "\r\n" +
+                                     "隊長總經驗： " + LeaderAllExp.ToString() + "\r\n" +
+                                     "隊員總經驗： " + AllExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單次地圖經驗： " + LeaderOneMapExp.ToString() + "\r\n" +
+                                     "隊員單次地圖經驗： " + OneMapExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場BOSS經驗： " + LeaderOneBossExp.ToString() + "\r\n" +
+                                     "隊員單場BOSS經驗： " + OneBossExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場檢非經驗： " + LeaderOnePoliceExp.ToString() + "\r\n" +
+                                     "隊員單場檢非經驗： " + OnePoliceExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場戰鬥經驗： " + LeaderOneBattleExp.ToString() + "\r\n" +
+                                     "隊員單場戰鬥經驗： " + OneBattleExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "額外資訊：" + "\r\n" +
+                                     "隊員平均搶譽機率： " + MvpRate.ToString() + "\r\n" +
+                                     "戰鬥評價加成數值： " + BattleRankScore.ToString() + "\r\n" +
+                                     "對應檢非違使經驗： " + PoliceExp.ToString();
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                OutputTextBox.Text = "總次數： " + AllCount.ToString() + "次" + "\r\n" +
+                                     "單次地圖需時： " + MapTime.ToString() + "分鐘" + "\r\n" +
+                                     "\r\n" +
+                                     "隊長總經驗： " + LeaderAllExp.ToString() + "\r\n" +
+                                     "隊員總經驗： " + AllExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單次地圖經驗： " + LeaderOneMapExp.ToString() + "\r\n" +
+                                     "隊員單次地圖經驗： " + OneMapExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場BOSS經驗： " + LeaderOneBossExp.ToString() + "\r\n" +
+                                     "隊員單場BOSS經驗： " + OneBossExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場檢非經驗： " + LeaderOnePoliceExp.ToString() + "\r\n" +
+                                     "隊員單場檢非經驗： " + OnePoliceExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場戰鬥經驗： " + LeaderOneBattleExp.ToString() + "\r\n" +
+                                     "隊員單場戰鬥經驗： " + OneBattleExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "額外資訊：" + "\r\n" +
+                                     "隊員平均搶譽機率： " + MvpRate.ToString() + "\r\n" +
+                                     "戰鬥評價加成數值： " + BattleRankScore.ToString() + "\r\n" +
+                                     "對應檢非違使經驗： " + PoliceExp.ToString();
+            }
+        }
+        // 詳細計算：自定義模式
+        private void ComputeByUser()
+        {
+            double MvpRate, BattleRankScore, MapTime, AllTime, AllCount, PoliceExp;
+            int LeaderOneBattleExp, LeaderOneMapExp, LeaderAllExp, LeaderOnePoliceExp, LeaderOneBossExp;
+            int OneBattleExp, OneMapExp, AllExp, OnePoliceExp, OneBossExp;
+
+            // 初始話
+            AllTime = 0;
+            AllCount = 0;
+            LeaderAllExp = 0;
+            AllExp = 0;
+
+            // 暫存器
+            double LeaderMvpExp, LeaderNoMvpExp, MvpExp, NoMvpExp;
+
+            // 隊員平均搶譽機率：1 / 隊員數
+            MvpRate = 1.0 / double.Parse(MemberNumberComboBox.Text);
+
+            // 戰鬥評價加成
+            if (BattleScoreComboBox.Text == "S" | BattleScoreComboBox.Text == "A")
             {
                 BattleRankScore = 1.2;
             }
@@ -284,10 +555,17 @@ namespace TourabuTool
             // 每次地圖進出需時：單場戰鬥需時 * 該地圖平均戰鬥場數
             MapTime = double.Parse(OneBattleTimeTextBox.Text) * double.Parse(AverageBattleCountTextBox.Text);
 
-            // 完成所有出陣次數總需時：每次地圖進出需時 * 進出地圖次數
-            AllTime = MapTime * int.Parse(MapCountTextBox.Text);
 
-            // 反之，知道需時，求進出地圖次數：需時 / ( 單場戰鬥需時 * 該地圖平均戰鬥場數 )
+            if (TypeComboBox.Text == "總需時")
+            {
+                // 完成所有出陣次數總需時：每次地圖進出需時 * 進出地圖次數
+                AllTime = MapTime * int.Parse(MapCountTextBox.Text);
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                // 反之，知道需時，求進出地圖次數：需時 / ( 單場戰鬥需時 * 該地圖平均戰鬥場數 )
+                AllCount = int.Parse(BattleTimeTextBox.Text) / (double.Parse(OneBattleTimeTextBox.Text) * double.Parse(AverageBattleCountTextBox.Text));
+            }   
 
             // 隊長
 
@@ -301,12 +579,20 @@ namespace TourabuTool
             // 隊長單次地圖經驗：(搶譽經驗+非搶譽經驗) * 額外加成
             // 搶譽經驗：單場戰鬥平均經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
             // 非搶譽經驗：單場戰鬥平均經驗 * 隊長加成 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
-            LeaderMvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * 1.5 * 2 * BattleRankScore * (int.Parse(AverageBattleCountTextBox.Text) * MvpRate);
-            LeaderNoMvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * 1.5 * BattleRankScore * (int.Parse(AverageBattleCountTextBox.Text) * (1 - MvpRate));
+            LeaderMvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * 1.5 * 2 * BattleRankScore * (double.Parse(AverageBattleCountTextBox.Text) * MvpRate);
+            LeaderNoMvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * 1.5 * BattleRankScore * (double.Parse(AverageBattleCountTextBox.Text) * (1 - MvpRate));
             LeaderOneMapExp = (int)((LeaderMvpExp + LeaderNoMvpExp) * double.Parse(ExtraInformationNormalTextBox.Text));
 
-            // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
-            LeaderAllExp = LeaderOneMapExp * int.Parse(MapCountTextBox.Text);
+            if (TypeComboBox.Text == "總需時")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                LeaderAllExp = LeaderOneMapExp * int.Parse(MapCountTextBox.Text);
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                LeaderAllExp = (int)((double)LeaderOneMapExp * AllCount);
+            }
 
             // 隊長單場檢非違使經驗：(搶譽經驗+非搶譽經驗) * 額外加成
             // 搶譽經驗：單場檢非違使經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
@@ -314,7 +600,7 @@ namespace TourabuTool
             LeaderMvpExp = PoliceExp * 1.5 * 2 * BattleRankScore * (1 * MvpRate);
             LeaderNoMvpExp = PoliceExp * 1.5 * BattleRankScore * (1 * (1 - MvpRate));
             LeaderOnePoliceExp = (int)((LeaderMvpExp + LeaderNoMvpExp) * double.Parse(ExtraInformationPoliceTextBox.Text));
-            
+
             // 隊長單場BOSS經驗：(搶譽經驗+非搶譽經驗) * 額外加成
             // 搶譽經驗：單場BOSS平均經驗 * 隊長加成 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
             // 非搶譽經驗：單場BOSS平均經驗 * 隊長加成 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
@@ -334,12 +620,20 @@ namespace TourabuTool
             // 隊員單次地圖經驗：(搶譽經驗+非搶譽經驗) * 額外加成
             // 搶譽經驗：單場戰鬥平均經驗 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
             // 非搶譽經驗：單場戰鬥平均經驗 * 戰鬥評分加成 * ( 戰鬥場數 * (1-搶譽機率) )
-            MvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * 2 * BattleRankScore * (int.Parse(AverageBattleCountTextBox.Text) * MvpRate);
-            NoMvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * BattleRankScore * (int.Parse(AverageBattleCountTextBox.Text) * (1 - MvpRate));
+            MvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * 2 * BattleRankScore * (double.Parse(AverageBattleCountTextBox.Text) * MvpRate);
+            NoMvpExp = double.Parse(OneBattleAverageExpTextBox.Text) * BattleRankScore * (double.Parse(AverageBattleCountTextBox.Text) * (1 - MvpRate));
             OneMapExp = (int)((MvpExp + NoMvpExp) * double.Parse(ExtraInformationNormalTextBox.Text));
 
-            // 隊員所有出陣經驗：單次地圖經驗 * 進出地圖次數
-            AllExp = OneMapExp * int.Parse(MapCountTextBox.Text);
+            if (TypeComboBox.Text == "總需時")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                AllExp = OneMapExp * int.Parse(MapCountTextBox.Text);
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                // 隊長所有出陣經驗：單次地圖經驗 * 進出地圖次數
+                AllExp = (int)((double)OneMapExp * AllCount);
+            }
 
             // 隊員單場檢非違使經驗：(搶譽經驗+非搶譽經驗) * 額外加成
             // 搶譽經驗：單場檢非違使經驗 * 搶譽加成 * 戰鬥評分加成 * ( 戰鬥場數 * 搶譽機率 )
@@ -355,28 +649,56 @@ namespace TourabuTool
             NoMvpExp = double.Parse(OneBossAverageExpTextBox.Text) * BattleRankScore * (1 * (1 - MvpRate));
             OneBossExp = (int)((MvpExp + NoMvpExp) * double.Parse(ExtraInformationNormalBossTextBox.Text));
 
-            OutputTextBox.Text = "總需時： " + AllTime.ToString() + "分鐘" + "\r\n" +
-                                 "單次地圖需時： " + MapTime.ToString() + "分鐘" + "\r\n" +
-                                 "\r\n" +
-                                 "隊長總經驗： " + LeaderAllExp.ToString() + "\r\n" +
-                                 "隊員總經驗： " + AllExp.ToString() + "\r\n" +
-                                 "\r\n" +
-                                 "隊長單次地圖經驗： " + LeaderOneMapExp.ToString() + "\r\n" +
-                                 "隊員單次地圖經驗： " + OneMapExp.ToString() + "\r\n" +
-                                 "\r\n" +
-                                 "隊長單場BOSS經驗： " + LeaderOneBossExp.ToString() + "\r\n" +
-                                 "隊員單場BOSS經驗： " + OneBossExp.ToString() + "\r\n" +
-                                 "\r\n" +
-                                 "隊長單場檢非經驗： " + LeaderOnePoliceExp.ToString() + "\r\n" +
-                                 "隊員單場檢非經驗： " + OnePoliceExp.ToString() + "\r\n" +
-                                 "\r\n" +
-                                 "隊長單場戰鬥經驗： " + LeaderOneBattleExp.ToString() + "\r\n" +
-                                 "隊員單場戰鬥經驗： " + OneBattleExp.ToString() + "\r\n" +
-                                 "\r\n" +
-                                 "額外資訊：" + "\r\n" +
-                                 "隊員平均搶譽機率： " + MvpRate.ToString() + "\r\n" +
-                                 "戰鬥評價加成數值： " + BattleRankScore.ToString() + "\r\n" +
-                                 "對應檢非違使經驗： " + PoliceExp.ToString();
+            if (TypeComboBox.Text == "總需時")
+            {
+                OutputTextBox.Text = "總需時： " + AllTime.ToString() + "分鐘" + "\r\n" +
+                                     "單次地圖需時： " + MapTime.ToString() + "分鐘" + "\r\n" +
+                                     "\r\n" +
+                                     "隊長總經驗： " + LeaderAllExp.ToString() + "\r\n" +
+                                     "隊員總經驗： " + AllExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單次地圖經驗： " + LeaderOneMapExp.ToString() + "\r\n" +
+                                     "隊員單次地圖經驗： " + OneMapExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場BOSS經驗： " + LeaderOneBossExp.ToString() + "\r\n" +
+                                     "隊員單場BOSS經驗： " + OneBossExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場檢非經驗： " + LeaderOnePoliceExp.ToString() + "\r\n" +
+                                     "隊員單場檢非經驗： " + OnePoliceExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場戰鬥經驗： " + LeaderOneBattleExp.ToString() + "\r\n" +
+                                     "隊員單場戰鬥經驗： " + OneBattleExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "額外資訊：" + "\r\n" +
+                                     "隊員平均搶譽機率： " + MvpRate.ToString() + "\r\n" +
+                                     "戰鬥評價加成數值： " + BattleRankScore.ToString() + "\r\n" +
+                                     "對應檢非違使經驗： " + PoliceExp.ToString();
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                OutputTextBox.Text = "總次數： " + AllCount.ToString() + "次" + "\r\n" +
+                                     "單次地圖需時： " + MapTime.ToString() + "分鐘" + "\r\n" +
+                                     "\r\n" +
+                                     "隊長總經驗： " + LeaderAllExp.ToString() + "\r\n" +
+                                     "隊員總經驗： " + AllExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單次地圖經驗： " + LeaderOneMapExp.ToString() + "\r\n" +
+                                     "隊員單次地圖經驗： " + OneMapExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場BOSS經驗： " + LeaderOneBossExp.ToString() + "\r\n" +
+                                     "隊員單場BOSS經驗： " + OneBossExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場檢非經驗： " + LeaderOnePoliceExp.ToString() + "\r\n" +
+                                     "隊員單場檢非經驗： " + OnePoliceExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "隊長單場戰鬥經驗： " + LeaderOneBattleExp.ToString() + "\r\n" +
+                                     "隊員單場戰鬥經驗： " + OneBattleExp.ToString() + "\r\n" +
+                                     "\r\n" +
+                                     "額外資訊：" + "\r\n" +
+                                     "隊員平均搶譽機率： " + MvpRate.ToString() + "\r\n" +
+                                     "戰鬥評價加成數值： " + BattleRankScore.ToString() + "\r\n" +
+                                     "對應檢非違使經驗： " + PoliceExp.ToString();
+            }
         }
         // 只允許輸入數字、刪除鍵、小數點
         private void ExtraInformationNormalTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -452,6 +774,62 @@ namespace TourabuTool
             {
                 e.Handled = true;
             }
+        }
+        // 依據使用者選擇的模式，對界面做出改變
+        private void OperateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (OperateComboBox.Text == "懶人模式")
+            {
+                AverageBattleCountTextBox.Visible = false;
+                OneBattleAverageExpTextBox.Visible = false;
+                OneBossAverageExpTextBox.Visible = false;
+
+                AverageBattleCountLabel.Visible = false;
+                OneBattleAverageExpLabel.Visible = false;
+                OneBossAverageExpLabel.Visible = false;
+
+                MapLabel.Visible = true;
+                MapComboBox.Visible = true;
+            }
+            else if (OperateComboBox.Text == "自定義模式")
+            {
+                AverageBattleCountTextBox.Visible = true;
+                OneBattleAverageExpTextBox.Visible = true;
+                OneBossAverageExpTextBox.Visible = true;
+
+                AverageBattleCountLabel.Visible = true;
+                OneBattleAverageExpLabel.Visible = true;
+                OneBossAverageExpLabel.Visible = true;
+
+                MapLabel.Visible = false;
+                MapComboBox.Visible = false;
+            }
+        }
+        // 依據使用者選擇的需求計算結果，對界面做出改變
+        private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TypeComboBox.Text == "總需時")
+            {
+                BattleTimeLabel.Visible = false;
+                MapCountLabel.Visible = true;
+
+                BattleTimeTextBox.Visible = false;
+                MapCountTextBox.Visible = true;
+            }
+            else if (TypeComboBox.Text == "總次數")
+            {
+                BattleTimeLabel.Visible = true;
+                MapCountLabel.Visible = false;
+
+                BattleTimeTextBox.Visible = true;
+                MapCountTextBox.Visible = false;
+            }
+        }
+        // 
+        private void FunctionDetailButton_Click(object sender, EventArgs e)
+        {
+            ComputeFormFunction subFunctionForm = new ComputeFormFunction();
+            subFunctionForm.ShowDialog(this);
         }
     }
 }

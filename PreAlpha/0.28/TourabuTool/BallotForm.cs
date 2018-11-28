@@ -48,6 +48,7 @@ namespace TourabuTool
             TouhaComboBox.Items.Add("堀川");
             TouhaComboBox.Items.Add("粟田口");
             TouhaComboBox.Items.Add("正宗");
+            TouhaComboBox.Items.Add("江");
 
             TouhaComboBox.Text = "（不使用）";
         }
@@ -126,7 +127,7 @@ namespace TourabuTool
             List[138, 0] = "御手杵";          List[138, 1] = "槍";       List[138, 2] = "無刀派";
             List[140, 0] = "巴形薙刀";        List[140, 1] = "薙刀";     List[140, 2] = "無刀派";
             List[142, 0] = "毛利藤四郎";      List[142, 1] = "短刀";     List[142, 2] = "粟田口";
-            List[144, 0] = "篭手切江";        List[144, 1] = "脇差";     List[144, 2] = "無刀派";
+            List[144, 0] = "篭手切江";        List[144, 1] = "脇差";     List[144, 2] = "江";
             List[146, 0] = "謙信景光";        List[146, 1] = "短刀";     List[146, 2] = "長船";
             List[148, 0] = "小豆長光";        List[148, 1] = "太刀";     List[148, 2] = "長船";
             List[150, 0] = "日向正宗";        List[150, 1] = "短刀";     List[150, 2] = "正宗";
@@ -134,6 +135,7 @@ namespace TourabuTool
             List[154, 0] = "南泉一文字";      List[154, 1] = "打刀";     List[154, 2] = "無刀派";
             List[156, 0] = "千代金丸";        List[156, 1] = "太刀";     List[156, 2] = "無刀派";
             List[158, 0] = "山姥切長義";      List[158, 1] = "打刀";     List[158, 2] = "無刀派";
+            List[160, 0] = "豐前江";          List[160, 1] = "打刀";     List[160, 2] = "江";
         }
         // 當按鍵點下時，會先檢查當前標籤，再依據標籤執行抽籤動作
         private void BallotButton_Click(object sender, EventArgs e)

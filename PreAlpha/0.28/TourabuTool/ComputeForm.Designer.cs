@@ -56,52 +56,58 @@
             this.OneBossAverageExpTextBox = new System.Windows.Forms.TextBox();
             this.GoButton = new System.Windows.Forms.Button();
             this.OutputTextBox = new System.Windows.Forms.TextBox();
+            this.MapLabel = new System.Windows.Forms.Label();
+            this.MapComboBox = new System.Windows.Forms.ComboBox();
+            this.TypeLabel = new System.Windows.Forms.Label();
+            this.TypeComboBox = new System.Windows.Forms.ComboBox();
+            this.BattleTimeLabel = new System.Windows.Forms.Label();
+            this.BattleTimeTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // MemberNumberLabel
             // 
             this.MemberNumberLabel.AutoSize = true;
             this.MemberNumberLabel.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.MemberNumberLabel.Location = new System.Drawing.Point(27, 31);
+            this.MemberNumberLabel.Location = new System.Drawing.Point(22, 94);
             this.MemberNumberLabel.Name = "MemberNumberLabel";
-            this.MemberNumberLabel.Size = new System.Drawing.Size(92, 16);
+            this.MemberNumberLabel.Size = new System.Drawing.Size(56, 16);
             this.MemberNumberLabel.TabIndex = 13;
-            this.MemberNumberLabel.Text = "隊伍成員數量：";
+            this.MemberNumberLabel.Text = "隊員數：";
             // 
             // MemberNumberComboBox
             // 
             this.MemberNumberComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MemberNumberComboBox.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.MemberNumberComboBox.FormattingEnabled = true;
-            this.MemberNumberComboBox.Location = new System.Drawing.Point(125, 28);
+            this.MemberNumberComboBox.Location = new System.Drawing.Point(84, 91);
             this.MemberNumberComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MemberNumberComboBox.Name = "MemberNumberComboBox";
-            this.MemberNumberComboBox.Size = new System.Drawing.Size(38, 24);
+            this.MemberNumberComboBox.Size = new System.Drawing.Size(42, 24);
             this.MemberNumberComboBox.TabIndex = 16;
             // 
             // BattleScoreLabel
             // 
             this.BattleScoreLabel.AutoSize = true;
-            this.BattleScoreLabel.Location = new System.Drawing.Point(27, 63);
+            this.BattleScoreLabel.Location = new System.Drawing.Point(152, 94);
             this.BattleScoreLabel.Name = "BattleScoreLabel";
-            this.BattleScoreLabel.Size = new System.Drawing.Size(92, 16);
+            this.BattleScoreLabel.Size = new System.Drawing.Size(68, 16);
             this.BattleScoreLabel.TabIndex = 17;
-            this.BattleScoreLabel.Text = "平均戰鬥評價：";
+            this.BattleScoreLabel.Text = "平均評價：";
             // 
             // BattleScoreComboBox
             // 
             this.BattleScoreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BattleScoreComboBox.FormattingEnabled = true;
-            this.BattleScoreComboBox.Location = new System.Drawing.Point(125, 60);
+            this.BattleScoreComboBox.Location = new System.Drawing.Point(226, 91);
             this.BattleScoreComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BattleScoreComboBox.Name = "BattleScoreComboBox";
-            this.BattleScoreComboBox.Size = new System.Drawing.Size(74, 24);
+            this.BattleScoreComboBox.Size = new System.Drawing.Size(62, 24);
             this.BattleScoreComboBox.TabIndex = 18;
             // 
             // MaxMemberLevelLabel
             // 
             this.MaxMemberLevelLabel.AutoSize = true;
-            this.MaxMemberLevelLabel.Location = new System.Drawing.Point(27, 96);
+            this.MaxMemberLevelLabel.Location = new System.Drawing.Point(310, 94);
             this.MaxMemberLevelLabel.Name = "MaxMemberLevelLabel";
             this.MaxMemberLevelLabel.Size = new System.Drawing.Size(92, 16);
             this.MaxMemberLevelLabel.TabIndex = 19;
@@ -111,16 +117,16 @@
             // 
             this.MaxMemberLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MaxMemberLevelComboBox.FormattingEnabled = true;
-            this.MaxMemberLevelComboBox.Location = new System.Drawing.Point(125, 93);
+            this.MaxMemberLevelComboBox.Location = new System.Drawing.Point(408, 91);
             this.MaxMemberLevelComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaxMemberLevelComboBox.Name = "MaxMemberLevelComboBox";
-            this.MaxMemberLevelComboBox.Size = new System.Drawing.Size(59, 24);
+            this.MaxMemberLevelComboBox.Size = new System.Drawing.Size(46, 24);
             this.MaxMemberLevelComboBox.TabIndex = 20;
             // 
             // ExtraInformationLabel
             // 
             this.ExtraInformationLabel.AutoSize = true;
-            this.ExtraInformationLabel.Location = new System.Drawing.Point(332, 218);
+            this.ExtraInformationLabel.Location = new System.Drawing.Point(295, 262);
             this.ExtraInformationLabel.Name = "ExtraInformationLabel";
             this.ExtraInformationLabel.Size = new System.Drawing.Size(92, 16);
             this.ExtraInformationLabel.TabIndex = 21;
@@ -130,7 +136,7 @@
             // 
             this.ExtraInformationNormalLabel.AutoSize = true;
             this.ExtraInformationNormalLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.ExtraInformationNormalLabel.Location = new System.Drawing.Point(332, 251);
+            this.ExtraInformationNormalLabel.Location = new System.Drawing.Point(295, 295);
             this.ExtraInformationNormalLabel.Name = "ExtraInformationNormalLabel";
             this.ExtraInformationNormalLabel.Size = new System.Drawing.Size(68, 16);
             this.ExtraInformationNormalLabel.TabIndex = 22;
@@ -139,7 +145,7 @@
             // ExtraInformationNormalBossLabel
             // 
             this.ExtraInformationNormalBossLabel.AutoSize = true;
-            this.ExtraInformationNormalBossLabel.Location = new System.Drawing.Point(332, 286);
+            this.ExtraInformationNormalBossLabel.Location = new System.Drawing.Point(295, 330);
             this.ExtraInformationNormalBossLabel.Name = "ExtraInformationNormalBossLabel";
             this.ExtraInformationNormalBossLabel.Size = new System.Drawing.Size(69, 16);
             this.ExtraInformationNormalBossLabel.TabIndex = 23;
@@ -149,7 +155,7 @@
             // 
             this.ExtraInformationPoliceLabel.AutoSize = true;
             this.ExtraInformationPoliceLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.ExtraInformationPoliceLabel.Location = new System.Drawing.Point(332, 321);
+            this.ExtraInformationPoliceLabel.Location = new System.Drawing.Point(295, 365);
             this.ExtraInformationPoliceLabel.Name = "ExtraInformationPoliceLabel";
             this.ExtraInformationPoliceLabel.Size = new System.Drawing.Size(68, 16);
             this.ExtraInformationPoliceLabel.TabIndex = 26;
@@ -157,7 +163,7 @@
             // 
             // ExtraInformationNormalTextBox
             // 
-            this.ExtraInformationNormalTextBox.Location = new System.Drawing.Point(406, 248);
+            this.ExtraInformationNormalTextBox.Location = new System.Drawing.Point(369, 292);
             this.ExtraInformationNormalTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ExtraInformationNormalTextBox.Name = "ExtraInformationNormalTextBox";
             this.ExtraInformationNormalTextBox.Size = new System.Drawing.Size(68, 23);
@@ -167,7 +173,7 @@
             // 
             // ExtraInformationNormalBossTextBox
             // 
-            this.ExtraInformationNormalBossTextBox.Location = new System.Drawing.Point(407, 283);
+            this.ExtraInformationNormalBossTextBox.Location = new System.Drawing.Point(370, 327);
             this.ExtraInformationNormalBossTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ExtraInformationNormalBossTextBox.Name = "ExtraInformationNormalBossTextBox";
             this.ExtraInformationNormalBossTextBox.Size = new System.Drawing.Size(68, 23);
@@ -177,7 +183,7 @@
             // 
             // ExtraInformationPoliceTextBox
             // 
-            this.ExtraInformationPoliceTextBox.Location = new System.Drawing.Point(406, 318);
+            this.ExtraInformationPoliceTextBox.Location = new System.Drawing.Point(369, 362);
             this.ExtraInformationPoliceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ExtraInformationPoliceTextBox.Name = "ExtraInformationPoliceTextBox";
             this.ExtraInformationPoliceTextBox.Size = new System.Drawing.Size(68, 23);
@@ -188,7 +194,7 @@
             // OperateLabel
             // 
             this.OperateLabel.AutoSize = true;
-            this.OperateLabel.Location = new System.Drawing.Point(27, 151);
+            this.OperateLabel.Location = new System.Drawing.Point(22, 23);
             this.OperateLabel.Name = "OperateLabel";
             this.OperateLabel.Size = new System.Drawing.Size(68, 16);
             this.OperateLabel.TabIndex = 32;
@@ -198,35 +204,37 @@
             // 
             this.OperateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.OperateComboBox.FormattingEnabled = true;
-            this.OperateComboBox.Location = new System.Drawing.Point(101, 148);
+            this.OperateComboBox.Location = new System.Drawing.Point(96, 20);
             this.OperateComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OperateComboBox.Name = "OperateComboBox";
-            this.OperateComboBox.Size = new System.Drawing.Size(117, 24);
+            this.OperateComboBox.Size = new System.Drawing.Size(87, 24);
             this.OperateComboBox.TabIndex = 33;
+            this.OperateComboBox.SelectedIndexChanged += new System.EventHandler(this.OperateComboBox_SelectedIndexChanged);
             // 
             // FunctionDetailButton
             // 
             this.FunctionDetailButton.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.FunctionDetailButton.Location = new System.Drawing.Point(386, 23);
+            this.FunctionDetailButton.Location = new System.Drawing.Point(86, 395);
             this.FunctionDetailButton.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.FunctionDetailButton.Name = "FunctionDetailButton";
-            this.FunctionDetailButton.Size = new System.Drawing.Size(95, 29);
+            this.FunctionDetailButton.Size = new System.Drawing.Size(76, 29);
             this.FunctionDetailButton.TabIndex = 34;
-            this.FunctionDetailButton.Text = "詳細計算公式";
+            this.FunctionDetailButton.Text = "詳細公式";
             this.FunctionDetailButton.UseVisualStyleBackColor = true;
+            this.FunctionDetailButton.Click += new System.EventHandler(this.FunctionDetailButton_Click);
             // 
             // OneBattleTimeLabel
             // 
             this.OneBattleTimeLabel.AutoSize = true;
-            this.OneBattleTimeLabel.Location = new System.Drawing.Point(27, 218);
+            this.OneBattleTimeLabel.Location = new System.Drawing.Point(152, 166);
             this.OneBattleTimeLabel.Name = "OneBattleTimeLabel";
-            this.OneBattleTimeLabel.Size = new System.Drawing.Size(164, 16);
+            this.OneBattleTimeLabel.Size = new System.Drawing.Size(140, 16);
             this.OneBattleTimeLabel.TabIndex = 35;
-            this.OneBattleTimeLabel.Text = "平均單場戰鬥需時（分鐘）：";
+            this.OneBattleTimeLabel.Text = "平均單場戰鬥（分鐘）：";
             // 
             // OneBattleTimeTextBox
             // 
-            this.OneBattleTimeTextBox.Location = new System.Drawing.Point(197, 215);
+            this.OneBattleTimeTextBox.Location = new System.Drawing.Point(298, 163);
             this.OneBattleTimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OneBattleTimeTextBox.Name = "OneBattleTimeTextBox";
             this.OneBattleTimeTextBox.Size = new System.Drawing.Size(66, 23);
@@ -237,7 +245,7 @@
             // MapCountLabel
             // 
             this.MapCountLabel.AutoSize = true;
-            this.MapCountLabel.Location = new System.Drawing.Point(27, 264);
+            this.MapCountLabel.Location = new System.Drawing.Point(152, 198);
             this.MapCountLabel.Name = "MapCountLabel";
             this.MapCountLabel.Size = new System.Drawing.Size(104, 16);
             this.MapCountLabel.TabIndex = 37;
@@ -245,7 +253,7 @@
             // 
             // MapCountTextBox
             // 
-            this.MapCountTextBox.Location = new System.Drawing.Point(137, 261);
+            this.MapCountTextBox.Location = new System.Drawing.Point(262, 195);
             this.MapCountTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MapCountTextBox.Name = "MapCountTextBox";
             this.MapCountTextBox.Size = new System.Drawing.Size(66, 23);
@@ -256,7 +264,7 @@
             // AverageBattleCountLabel
             // 
             this.AverageBattleCountLabel.AutoSize = true;
-            this.AverageBattleCountLabel.Location = new System.Drawing.Point(27, 297);
+            this.AverageBattleCountLabel.Location = new System.Drawing.Point(22, 262);
             this.AverageBattleCountLabel.Name = "AverageBattleCountLabel";
             this.AverageBattleCountLabel.Size = new System.Drawing.Size(140, 16);
             this.AverageBattleCountLabel.TabIndex = 39;
@@ -264,7 +272,7 @@
             // 
             // AverageBattleCountTextBox
             // 
-            this.AverageBattleCountTextBox.Location = new System.Drawing.Point(173, 294);
+            this.AverageBattleCountTextBox.Location = new System.Drawing.Point(168, 259);
             this.AverageBattleCountTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AverageBattleCountTextBox.Name = "AverageBattleCountTextBox";
             this.AverageBattleCountTextBox.Size = new System.Drawing.Size(66, 23);
@@ -275,15 +283,15 @@
             // OneBattleAverageExpLabel
             // 
             this.OneBattleAverageExpLabel.AutoSize = true;
-            this.OneBattleAverageExpLabel.Location = new System.Drawing.Point(27, 347);
+            this.OneBattleAverageExpLabel.Location = new System.Drawing.Point(22, 295);
             this.OneBattleAverageExpLabel.Name = "OneBattleAverageExpLabel";
-            this.OneBattleAverageExpLabel.Size = new System.Drawing.Size(164, 16);
+            this.OneBattleAverageExpLabel.Size = new System.Drawing.Size(140, 16);
             this.OneBattleAverageExpLabel.TabIndex = 41;
-            this.OneBattleAverageExpLabel.Text = "該地圖中平均單場戰鬥經驗：";
+            this.OneBattleAverageExpLabel.Text = "該地圖中平均戰鬥經驗：";
             // 
             // OneBattleAverageExpTextBox
             // 
-            this.OneBattleAverageExpTextBox.Location = new System.Drawing.Point(197, 344);
+            this.OneBattleAverageExpTextBox.Location = new System.Drawing.Point(168, 292);
             this.OneBattleAverageExpTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OneBattleAverageExpTextBox.Name = "OneBattleAverageExpTextBox";
             this.OneBattleAverageExpTextBox.Size = new System.Drawing.Size(66, 23);
@@ -295,15 +303,15 @@
             // 
             this.OneBossAverageExpLabel.AutoSize = true;
             this.OneBossAverageExpLabel.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.OneBossAverageExpLabel.Location = new System.Drawing.Point(27, 381);
+            this.OneBossAverageExpLabel.Location = new System.Drawing.Point(22, 329);
             this.OneBossAverageExpLabel.Name = "OneBossAverageExpLabel";
-            this.OneBossAverageExpLabel.Size = new System.Drawing.Size(165, 16);
+            this.OneBossAverageExpLabel.Size = new System.Drawing.Size(141, 16);
             this.OneBossAverageExpLabel.TabIndex = 43;
-            this.OneBossAverageExpLabel.Text = "該地圖中平均單場Boss經驗：";
+            this.OneBossAverageExpLabel.Text = "該地圖中平均Boss經驗：";
             // 
             // OneBossAverageExpTextBox
             // 
-            this.OneBossAverageExpTextBox.Location = new System.Drawing.Point(197, 378);
+            this.OneBossAverageExpTextBox.Location = new System.Drawing.Point(169, 326);
             this.OneBossAverageExpTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OneBossAverageExpTextBox.Name = "OneBossAverageExpTextBox";
             this.OneBossAverageExpTextBox.Size = new System.Drawing.Size(66, 23);
@@ -314,10 +322,10 @@
             // GoButton
             // 
             this.GoButton.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.GoButton.Location = new System.Drawing.Point(30, 456);
+            this.GoButton.Location = new System.Drawing.Point(25, 395);
             this.GoButton.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GoButton.Name = "GoButton";
-            this.GoButton.Size = new System.Drawing.Size(85, 87);
+            this.GoButton.Size = new System.Drawing.Size(55, 29);
             this.GoButton.TabIndex = 45;
             this.GoButton.Text = "GO";
             this.GoButton.UseVisualStyleBackColor = true;
@@ -327,19 +335,82 @@
             // 
             this.OutputTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OutputTextBox.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.OutputTextBox.Location = new System.Drawing.Point(137, 438);
+            this.OutputTextBox.Location = new System.Drawing.Point(25, 432);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ReadOnly = true;
             this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.OutputTextBox.Size = new System.Drawing.Size(344, 140);
+            this.OutputTextBox.Size = new System.Drawing.Size(429, 126);
             this.OutputTextBox.TabIndex = 46;
+            // 
+            // MapLabel
+            // 
+            this.MapLabel.AutoSize = true;
+            this.MapLabel.Location = new System.Drawing.Point(22, 262);
+            this.MapLabel.Name = "MapLabel";
+            this.MapLabel.Size = new System.Drawing.Size(68, 16);
+            this.MapLabel.TabIndex = 47;
+            this.MapLabel.Text = "地圖代號：";
+            // 
+            // MapComboBox
+            // 
+            this.MapComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MapComboBox.FormattingEnabled = true;
+            this.MapComboBox.Location = new System.Drawing.Point(96, 259);
+            this.MapComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MapComboBox.Name = "MapComboBox";
+            this.MapComboBox.Size = new System.Drawing.Size(62, 24);
+            this.MapComboBox.TabIndex = 48;
+            // 
+            // TypeLabel
+            // 
+            this.TypeLabel.AutoSize = true;
+            this.TypeLabel.Location = new System.Drawing.Point(22, 166);
+            this.TypeLabel.Name = "TypeLabel";
+            this.TypeLabel.Size = new System.Drawing.Size(44, 16);
+            this.TypeLabel.TabIndex = 49;
+            this.TypeLabel.Text = "計算：";
+            // 
+            // TypeComboBox
+            // 
+            this.TypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeComboBox.FormattingEnabled = true;
+            this.TypeComboBox.Location = new System.Drawing.Point(72, 163);
+            this.TypeComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TypeComboBox.Name = "TypeComboBox";
+            this.TypeComboBox.Size = new System.Drawing.Size(62, 24);
+            this.TypeComboBox.TabIndex = 50;
+            this.TypeComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeComboBox_SelectedIndexChanged);
+            // 
+            // BattleTimeLabel
+            // 
+            this.BattleTimeLabel.AutoSize = true;
+            this.BattleTimeLabel.Location = new System.Drawing.Point(152, 198);
+            this.BattleTimeLabel.Name = "BattleTimeLabel";
+            this.BattleTimeLabel.Size = new System.Drawing.Size(104, 16);
+            this.BattleTimeLabel.TabIndex = 51;
+            this.BattleTimeLabel.Text = "總耗時（分鐘）：";
+            // 
+            // BattleTimeTextBox
+            // 
+            this.BattleTimeTextBox.Location = new System.Drawing.Point(262, 195);
+            this.BattleTimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BattleTimeTextBox.Name = "BattleTimeTextBox";
+            this.BattleTimeTextBox.Size = new System.Drawing.Size(66, 23);
+            this.BattleTimeTextBox.TabIndex = 52;
+            this.BattleTimeTextBox.Text = "60";
             // 
             // ComputeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 607);
+            this.ClientSize = new System.Drawing.Size(479, 582);
+            this.Controls.Add(this.BattleTimeTextBox);
+            this.Controls.Add(this.BattleTimeLabel);
+            this.Controls.Add(this.TypeComboBox);
+            this.Controls.Add(this.TypeLabel);
+            this.Controls.Add(this.MapComboBox);
+            this.Controls.Add(this.MapLabel);
             this.Controls.Add(this.OutputTextBox);
             this.Controls.Add(this.GoButton);
             this.Controls.Add(this.OneBossAverageExpTextBox);
@@ -376,7 +447,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ComputeForm";
-            this.Text = "出陣計算器（懶人模式目前尚未完成，自定義模式僅實現部分計算功能）";
+            this.Text = "出陣計算器";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ComputeForm_FormClosing);
             this.Load += new System.EventHandler(this.ComputeForm_Load);
             this.ResumeLayout(false);
@@ -414,6 +485,12 @@
         private System.Windows.Forms.TextBox OneBossAverageExpTextBox;
         private System.Windows.Forms.Button GoButton;
         private System.Windows.Forms.TextBox OutputTextBox;
+        private System.Windows.Forms.Label MapLabel;
+        private System.Windows.Forms.ComboBox MapComboBox;
+        private System.Windows.Forms.Label TypeLabel;
+        private System.Windows.Forms.ComboBox TypeComboBox;
+        private System.Windows.Forms.Label BattleTimeLabel;
+        private System.Windows.Forms.TextBox BattleTimeTextBox;
 
     }
 }

@@ -18,7 +18,13 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2018年11月7日" + "\r\n" +
+            InformationTextBox.Text = "2018年11月28日" + "\r\n" +
+                                      "新增刀男：160 豐前江。" + "\r\n" +
+                                      "刀派增加：江。" + "\r\n" +
+                                      "刀派更正：篭手切江：無刀派 → 江。" + "\r\n" +
+                                      "出陣助手：完善功能。" + "\r\n\r\n" + 
+                                      
+                                      "2018年11月7日" + "\r\n" +
                                       "改版：0.28：" + "\r\n" +
                                       "新增刀男：158 山姥切長義。" + "\r\n" +
                                       "新增功能：出陣助手：" + "\r\n" +
