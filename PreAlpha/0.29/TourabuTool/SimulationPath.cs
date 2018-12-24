@@ -22,8 +22,8 @@ namespace TourabuTool
         int VoiceIntervalMin = 5;
         int VoiceIntervalMax = 60;
         // 音效間隔，單位分鐘
-        int SoundIntervalMin = 0;
-        int SoundIntervalMax = 1;
+        int SoundIntervalMin = 5;
+        int SoundIntervalMax = 60;
 
         public SimulationPath()
         {
@@ -98,11 +98,29 @@ namespace TourabuTool
         private void VoiceCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             MainForm.mySettings.PathVoiceSetting = VoiceCheckBox.Checked;
+
+            if (VoiceCheckBox.Checked == true)
+            {
+                axWMP_voice.settings.volume = VolumeTrackBar.Value;
+            }
+            else
+            {
+                axWMP_voice.settings.volume = 0;
+            }
         }
         // 每次使用者更動使用習慣就要進行紀錄，設定是否要有音效
         private void SoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             MainForm.mySettings.PathSoundSetting = SoundCheckBox.Checked;
+
+            if (SoundCheckBox.Checked == true)
+            {
+                axWMP_sound.settings.volume = VolumeTrackBar.Value;
+            }
+            else
+            {
+                axWMP_sound.settings.volume = 0;
+            }
         }
         // 每次使用者更動使用習慣就要進行紀錄，設定音量大小
         // 同時對音量進行調整
@@ -115,8 +133,24 @@ namespace TourabuTool
         // 設置音量
         private void VolumeSet()
         {
-            axWMP_voice.settings.volume = VolumeTrackBar.Value;
-            axWMP_sound.settings.volume = VolumeTrackBar.Value;
+            // 唯有設定有要啟用該聲音或音效時，才須要設定，不然要讓他保持音量0
+            if (VoiceCheckBox.Checked == true)
+            {
+                axWMP_voice.settings.volume = VolumeTrackBar.Value;
+            }
+            else
+            {
+                axWMP_voice.settings.volume = 0;
+            }
+
+            if (SoundCheckBox.Checked == true)
+            {
+                axWMP_sound.settings.volume = VolumeTrackBar.Value;
+            }
+            else
+            {
+                axWMP_sound.settings.volume = 0;
+            }
         }
         // 每次改變指定，就要更換刀男，並記錄
         private void ToukennComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,8 +224,7 @@ namespace TourabuTool
         }
         // 可依據使用者的選擇改變本丸環境，如果沒有設定隨現實時間的話
         private void HonnmaruComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            HonnmaruNow = HonnmaruComboBox.Text;
+        {           
             MainForm.mySettings.PathHonnmaruSetting = HonnmaruComboBox.Text;
 
             HonnmaruSet();
@@ -199,8 +232,10 @@ namespace TourabuTool
         // 檢查現實時間，並對應更改本丸環境
         private void HonnmaruSet()
         {
+            axWMP_sound.settings.autoStart = false;
+            axWMP_sound.settings.setMode("loop", false);
             axWMP_sound.Ctlcontrols.stop();
-            String LoopSoundData = "";
+            bool LoopSoundData = false;
             
             // 檢查是否是與現實時間同步本丸環境
             if (RealTimeCheckBox.Checked == true)
@@ -233,27 +268,35 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 5 && hour <= 19) 
                     {
-                        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                        // 亂數取1~2之間
-                        int res = rnd.Next(1, 3);
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "雨季" && HonnmaruNow != "雨季-晴")
+                        {
+                            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                            // 亂數取1~2之間
+                            int res = rnd.Next(1, 3);
 
-                        // 下雨與否
-                        if (res == 1)
-                        {
-                            HonnmaruDataPath = "Home\\雨季.gif";
-                            HonnmaruNow = "雨季";
-                            LoopSoundData = "雨季";
-                        }
-                        else
-                        {
-                            HonnmaruDataPath = "Home\\雨季-晴.gif";
-                            HonnmaruNow = "雨季-晴";
+                            // 下雨與否
+                            if (res == 1)
+                            {
+                                HonnmaruDataPath = "Home\\雨季.gif";
+                                HonnmaruNow = "雨季";
+                                LoopSoundData = true;
+                            }
+                            else
+                            {
+                                HonnmaruDataPath = "Home\\雨季-晴.gif";
+                                HonnmaruNow = "雨季-晴";
+                            }
                         }
                     }
                     else
                     {
-                        HonnmaruDataPath = "Home\\夏夜.gif";
-                        HonnmaruNow = "夏夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "夏夜")
+                        {
+                            HonnmaruDataPath = "Home\\夏夜.gif";
+                            HonnmaruNow = "夏夜";
+                        }
                     }
                 }
                 else if (month == 7)
@@ -261,13 +304,21 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 5 && hour <= 19)
                     {
-                        HonnmaruDataPath = "Home\\夏季.gif";
-                        HonnmaruNow = "夏季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "夏季")
+                        {
+                            HonnmaruDataPath = "Home\\夏季.gif";
+                            HonnmaruNow = "夏季";
+                        }
                     }
                     else
                     {
-                        HonnmaruDataPath = "Home\\夏夜.gif";
-                        HonnmaruNow = "夏夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "夏夜")
+                        {
+                            HonnmaruDataPath = "Home\\夏夜.gif";
+                            HonnmaruNow = "夏夜";
+                        }
                     }
                 }
                 else if (month == 8)
@@ -278,19 +329,31 @@ namespace TourabuTool
                         // 是否是特殊節日
                         if (day == 7 || day == 8 || day == 9)
                         {
-                            HonnmaruDataPath = "Home\\立秋-向日葵.gif";
-                            HonnmaruNow = "立秋-向日葵";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "立秋-向日葵")
+                            {
+                                HonnmaruDataPath = "Home\\立秋-向日葵.gif";
+                                HonnmaruNow = "立秋-向日葵";
+                            }
                         }
                         else
                         {
-                            HonnmaruDataPath = "Home\\夏季.gif";
-                            HonnmaruNow = "夏季";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "夏季")
+                            {
+                                HonnmaruDataPath = "Home\\夏季.gif";
+                                HonnmaruNow = "夏季";
+                            }
                         }
                     }
                     else
                     {
-                        HonnmaruDataPath = "Home\\夏夜.gif";
-                        HonnmaruNow = "夏夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "夏夜")
+                        {
+                            HonnmaruDataPath = "Home\\夏夜.gif";
+                            HonnmaruNow = "夏夜";
+                        }
                     }
                 }
                 else if (month == 9)
@@ -298,13 +361,21 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 6 && hour <= 18)
                     {
-                        HonnmaruDataPath = "Home\\秋季.gif";
-                        HonnmaruNow = "秋季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "秋季")
+                        {
+                            HonnmaruDataPath = "Home\\秋季.gif";
+                            HonnmaruNow = "秋季";
+                        }
                     }
                     else
                     {
-                        HonnmaruDataPath = "Home\\十五夜.gif";
-                        HonnmaruNow = "十五夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "十五夜")
+                        {
+                            HonnmaruDataPath = "Home\\十五夜.gif";
+                            HonnmaruNow = "十五夜";
+                        }
                     }
                 }
                 else if (month == 10)
@@ -312,13 +383,21 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 6 && hour <= 18)
                     {
-                        HonnmaruDataPath = "Home\\秋季.gif";
-                        HonnmaruNow = "秋季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "秋季")
+                        {
+                            HonnmaruDataPath = "Home\\秋季.gif";
+                            HonnmaruNow = "秋季";
+                        }
                     }
                     else
                     {
-                        HonnmaruDataPath = "Home\\秋夜.gif";
-                        HonnmaruNow = "秋夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "秋夜")
+                        {
+                            HonnmaruDataPath = "Home\\秋夜.gif";
+                            HonnmaruNow = "秋夜";
+                        }
                     }
                 }
                 else if (month == 11)
@@ -329,19 +408,31 @@ namespace TourabuTool
                         // 是否是特殊節日
                         if (day == 7 || day == 8)
                         {
-                            HonnmaruDataPath = "Home\\立冬-菊.gif";
-                            HonnmaruNow = "立冬-菊";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "立冬-菊")
+                            {
+                                HonnmaruDataPath = "Home\\立冬-菊.gif";
+                                HonnmaruNow = "立冬-菊";
+                            }
                         }
                         else
                         {
-                            HonnmaruDataPath = "Home\\秋季.gif";
-                            HonnmaruNow = "秋季";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "秋季")
+                            {
+                                HonnmaruDataPath = "Home\\秋季.gif";
+                                HonnmaruNow = "秋季";
+                            }
                         }
                     }
                     else
                     {
-                        HonnmaruDataPath = "Home\\秋夜.gif";
-                        HonnmaruNow = "秋夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "秋夜")
+                        {
+                            HonnmaruDataPath = "Home\\秋夜.gif";
+                            HonnmaruNow = "秋夜";
+                        }
                     }
                 }
                 else if (month == 12)
@@ -349,35 +440,43 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 7 && hour <= 17)
                     {
-                        HonnmaruDataPath = "Home\\冬季.gif";
-                        HonnmaruNow = "冬季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬季")
+                        {
+                            HonnmaruDataPath = "Home\\冬季.gif";
+                            HonnmaruNow = "冬季";
+                        }
                     }
                     else
                     {
-                        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                        // 亂數取1~4之間
-                        int res = rnd.Next(1, 5);
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬夜-照明一" && HonnmaruNow != "冬夜-照明二" && HonnmaruNow != "冬夜-飾-照明一" && HonnmaruNow != "冬夜-飾-照明二")
+                        {
+                            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                            // 亂數取1~4之間
+                            int res = rnd.Next(1, 5);
 
-                        // 使用哪種夜景
-                        if (res == 1)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明一.gif";
-                            HonnmaruNow = "冬夜-照明一";
-                        }
-                        else if (res == 2)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明二.gif";
-                            HonnmaruNow = "冬夜-照明二";
-                        }
-                        else if (res == 3)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
-                            HonnmaruNow = "冬夜-飾-照明一";
-                        }
-                        else
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
-                            HonnmaruNow = "冬夜-飾-照明二";
+                            // 使用哪種夜景
+                            if (res == 1)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明一.gif";
+                                HonnmaruNow = "冬夜-照明一";
+                            }
+                            else if (res == 2)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明二.gif";
+                                HonnmaruNow = "冬夜-照明二";
+                            }
+                            else if (res == 3)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
+                                HonnmaruNow = "冬夜-飾-照明一";
+                            }
+                            else
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
+                                HonnmaruNow = "冬夜-飾-照明二";
+                            }
                         }
                     }
                 }
@@ -386,35 +485,43 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 7 && hour <= 17)
                     {
-                        HonnmaruDataPath = "Home\\冬季.gif";
-                        HonnmaruNow = "冬季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬季")
+                        {
+                            HonnmaruDataPath = "Home\\冬季.gif";
+                            HonnmaruNow = "冬季";
+                        }
                     }
                     else
                     {
-                        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                        // 亂數取1~4之間
-                        int res = rnd.Next(1, 5);
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬夜-照明一" && HonnmaruNow != "冬夜-照明二" && HonnmaruNow != "冬夜-飾-照明一" && HonnmaruNow != "冬夜-飾-照明二")
+                        {
+                            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                            // 亂數取1~4之間
+                            int res = rnd.Next(1, 5);
 
-                        // 使用哪種夜景
-                        if (res == 1)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明一.gif";
-                            HonnmaruNow = "冬夜-照明一";
-                        }
-                        else if (res == 2)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明二.gif";
-                            HonnmaruNow = "冬夜-照明二";
-                        }
-                        else if (res == 3)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
-                            HonnmaruNow = "冬夜-飾-照明一";
-                        }
-                        else
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
-                            HonnmaruNow = "冬夜-飾-照明二";
+                            // 使用哪種夜景
+                            if (res == 1)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明一.gif";
+                                HonnmaruNow = "冬夜-照明一";
+                            }
+                            else if (res == 2)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明二.gif";
+                                HonnmaruNow = "冬夜-照明二";
+                            }
+                            else if (res == 3)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
+                                HonnmaruNow = "冬夜-飾-照明一";
+                            }
+                            else
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
+                                HonnmaruNow = "冬夜-飾-照明二";
+                            }
                         }
                     }
                 }
@@ -426,41 +533,53 @@ namespace TourabuTool
                         // 是否是特殊節日
                         if (day == 1 || day == 2 || day == 3 || day == 4 || day == 5)
                         {
-                            HonnmaruDataPath = "Home\\撒豆驅鬼節.gif";
-                            HonnmaruNow = "撒豆驅鬼節";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "撒豆驅鬼節")
+                            {
+                                HonnmaruDataPath = "Home\\撒豆驅鬼節.gif";
+                                HonnmaruNow = "撒豆驅鬼節";
+                            }
                         }
                         else
                         {
-                            HonnmaruDataPath = "Home\\冬季.gif";
-                            HonnmaruNow = "冬季";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "冬季")
+                            {
+                                HonnmaruDataPath = "Home\\冬季.gif";
+                                HonnmaruNow = "冬季";
+                            }
                         }
                     }
                     else
                     {
-                        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                        // 亂數取1~4之間
-                        int res = rnd.Next(1, 5);
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬夜-照明一" && HonnmaruNow != "冬夜-照明二" && HonnmaruNow != "冬夜-飾-照明一" && HonnmaruNow != "冬夜-飾-照明二")
+                        {
+                            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                            // 亂數取1~4之間
+                            int res = rnd.Next(1, 5);
 
-                        // 使用哪種夜景
-                        if (res == 1)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明一.gif";
-                            HonnmaruNow = "冬夜-照明一";
-                        }
-                        else if (res == 2)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明二.gif";
-                            HonnmaruNow = "冬夜-照明二";
-                        }
-                        else if (res == 3)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
-                            HonnmaruNow = "冬夜-飾-照明一";
-                        }
-                        else
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
-                            HonnmaruNow = "冬夜-飾-照明二";
+                            // 使用哪種夜景
+                            if (res == 1)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明一.gif";
+                                HonnmaruNow = "冬夜-照明一";
+                            }
+                            else if (res == 2)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明二.gif";
+                                HonnmaruNow = "冬夜-照明二";
+                            }
+                            else if (res == 3)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
+                                HonnmaruNow = "冬夜-飾-照明一";
+                            }
+                            else
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
+                                HonnmaruNow = "冬夜-飾-照明二";
+                            }
                         }
                     }
                 }
@@ -469,35 +588,43 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 6 && hour <= 18)
                     {
-                        HonnmaruDataPath = "Home\\春季.gif";
-                        HonnmaruNow = "春季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "春季")
+                        {
+                            HonnmaruDataPath = "Home\\春季.gif";
+                            HonnmaruNow = "春季";
+                        }
                     }
                     else
                     {
-                        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                        // 亂數取1~4之間
-                        int res = rnd.Next(1, 5);
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬夜-照明一" && HonnmaruNow != "冬夜-照明二" && HonnmaruNow != "冬夜-飾-照明一" && HonnmaruNow != "冬夜-飾-照明二")
+                        {
+                            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                            // 亂數取1~4之間
+                            int res = rnd.Next(1, 5);
 
-                        // 使用哪種夜景
-                        if (res == 1)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明一.gif";
-                            HonnmaruNow = "冬夜-照明一";
-                        }
-                        else if (res == 2)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明二.gif";
-                            HonnmaruNow = "冬夜-照明二";
-                        }
-                        else if (res == 3)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
-                            HonnmaruNow = "冬夜-飾-照明一";
-                        }
-                        else
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
-                            HonnmaruNow = "冬夜-飾-照明二";
+                            // 使用哪種夜景
+                            if (res == 1)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明一.gif";
+                                HonnmaruNow = "冬夜-照明一";
+                            }
+                            else if (res == 2)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明二.gif";
+                                HonnmaruNow = "冬夜-照明二";
+                            }
+                            else if (res == 3)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
+                                HonnmaruNow = "冬夜-飾-照明一";
+                            }
+                            else
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
+                                HonnmaruNow = "冬夜-飾-照明二";
+                            }
                         }
                     }
                 }
@@ -506,35 +633,43 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 6 && hour <= 18)
                     {
-                        HonnmaruDataPath = "Home\\春季.gif";
-                        HonnmaruNow = "春季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "春季")
+                        {
+                            HonnmaruDataPath = "Home\\春季.gif";
+                            HonnmaruNow = "春季";
+                        }
                     }
                     else
                     {
-                        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                        // 亂數取1~4之間
-                        int res = rnd.Next(1, 5);
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "冬夜-照明一" && HonnmaruNow != "冬夜-照明二" && HonnmaruNow != "冬夜-飾-照明一" && HonnmaruNow != "冬夜-飾-照明二")
+                        {
+                            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                            // 亂數取1~4之間
+                            int res = rnd.Next(1, 5);
 
-                        // 使用哪種夜景
-                        if (res == 1)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明一.gif";
-                            HonnmaruNow = "冬夜-照明一";
-                        }
-                        else if (res == 2)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-照明二.gif";
-                            HonnmaruNow = "冬夜-照明二";
-                        }
-                        else if (res == 3)
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
-                            HonnmaruNow = "冬夜-飾-照明一";
-                        }
-                        else
-                        {
-                            HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
-                            HonnmaruNow = "冬夜-飾-照明二";
+                            // 使用哪種夜景
+                            if (res == 1)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明一.gif";
+                                HonnmaruNow = "冬夜-照明一";
+                            }
+                            else if (res == 2)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-照明二.gif";
+                                HonnmaruNow = "冬夜-照明二";
+                            }
+                            else if (res == 3)
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明一.gif";
+                                HonnmaruNow = "冬夜-飾-照明一";
+                            }
+                            else
+                            {
+                                HonnmaruDataPath = "Home\\冬夜-飾-照明二.gif";
+                                HonnmaruNow = "冬夜-飾-照明二";
+                            }
                         }
                     }
                 }
@@ -543,40 +678,43 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 6 && hour <= 18)
                     {
-                        HonnmaruDataPath = "Home\\春季.gif";
-                        HonnmaruNow = "春季";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "春季")
+                        {
+                            HonnmaruDataPath = "Home\\春季.gif";
+                            HonnmaruNow = "春季";
+                        }
                     }
                     else
                     {
-                       HonnmaruDataPath = "Home\\夏夜.gif";
-                       HonnmaruNow = "夏夜";
+                        // 先判斷使否已經是目標佈景，否才須要換
+                        if (HonnmaruNow != "夏夜")
+                        {
+                            HonnmaruDataPath = "Home\\夏夜.gif";
+                            HonnmaruNow = "夏夜";
+                        }
                     }
                 }
             }
             else
             {
-                HonnmaruDataPath = "Home\\" + MainForm.mySettings.PathHonnmaruSetting + ".gif";
+                HonnmaruDataPath = "Home\\" + HonnmaruComboBox.Text + ".gif";
+                HonnmaruNow = HonnmaruComboBox.Text;
 
-                HonnmaruNow = MainForm.mySettings.PathHonnmaruSetting;
-
-                if (MainForm.mySettings.PathHonnmaruSetting == "雨季")
+                if (HonnmaruNow == "雨季")
                 {
-                    LoopSoundData = "雨季";
+                    LoopSoundData = true;
                 }
             }
 
-            // 有開啟音效選項，且有選擇音效是常駐loop的本丸環境
-            if (SoundCheckBox.Checked == true && LoopSoundData != "")
+            // 有選擇音效是常駐loop的本丸環境
+            if (LoopSoundData)
             {
-                // 呼叫撥放器
-                // System.Media.SoundPlayer sp = new System.Media.SoundPlayer();
-                //AxWMPLib.AxWindowsMediaPlayer sp = new AxWMPLib.AxWindowsMediaPlayer();
                 axWMP_sound.settings.autoStart = false;
                 axWMP_sound.settings.setMode("loop", true);
-                axWMP_sound.settings.volume = VolumeTrackBar.Value;
 
                 // 目前僅雨季有常駐loop音效
-                if (LoopSoundData == "雨季") 
+                if (HonnmaruNow == "雨季") 
                 {                   
                     SoundDataPath = DataPath + "Home\\Sound\\rain.mp3";
                 }
@@ -585,8 +723,6 @@ namespace TourabuTool
                 {
                     axWMP_sound.URL = SoundDataPath;
                     axWMP_sound.Ctlcontrols.play();
-                    //sp.SoundLocation = VoicePath;
-                    //sp.Play();
                 }
                 catch
                 {
@@ -634,59 +770,50 @@ namespace TourabuTool
         // 雨季因為是loop的關係，在本丸環境設置時即完成，不會在此設定
         private void SoundSet()
         {
-            // 有開啟音效選項
-            if (SoundCheckBox.Checked == true)
+            axWMP_sound.settings.autoStart = false;
+            axWMP_sound.settings.setMode("loop", false);
+            axWMP_sound.Ctlcontrols.stop();
+
+            if (HonnmaruNow == "一般") 
             {
-                // 呼叫撥放器
-                // System.Media.SoundPlayer sp = new System.Media.SoundPlayer();
-                //AxWMPLib.AxWindowsMediaPlayer sp = new AxWMPLib.AxWindowsMediaPlayer();
-                axWMP_sound.settings.autoStart = false;
-                axWMP_sound.settings.setMode("loop", false);
-                axWMP_sound.settings.volume = VolumeTrackBar.Value;
+                SoundDataPath = DataPath + "Home\\Sound\\sparrow.mp3";
+            }
+            else if (HonnmaruNow == "十五夜" || HonnmaruNow == "秋夜")
+            {
+                SoundDataPath = DataPath + "Home\\Sound\\insect.mp3";
+            }
+            else if (HonnmaruNow == "雨季-晴")
+            {
+                SoundDataPath = DataPath + "Home\\Sound\\frog.mp3";
+            }
+            else if (HonnmaruNow == "春季")
+            {
+                SoundDataPath = DataPath + "Home\\Sound\\bird.mp3";
+            }
+            else if (HonnmaruNow == "夏夜")
+            {
+                SoundDataPath = DataPath + "Home\\Sound\\insect.mp3";
+            }
+            else if (HonnmaruNow == "夏季")
+            {
+                SoundDataPath = DataPath + "Home\\Sound\\wind_bell.mp3";
+            }
+            else if (HonnmaruNow == "撒豆驅鬼節")
+            {
+                SoundDataPath = DataPath + "Home\\Sound\\crow.mp3";
+            }
 
-                if (HonnmaruNow == "一般") 
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\sparrow.mp3";
-                }
-                else if (HonnmaruNow == "十五夜" || HonnmaruNow == "秋夜")
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\insect.mp3";
-                }
-                else if (HonnmaruNow == "雨季-晴")
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\frog.mp3";
-                }
-                else if (HonnmaruNow == "春季")
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\bird.mp3";
-                }
-                else if (HonnmaruNow == "夏夜")
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\insect.mp3";
-                }
-                else if (HonnmaruNow == "夏季")
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\wind_bell.mp3";
-                }
-                else if (HonnmaruNow == "撒豆驅鬼節")
-                {
-                    SoundDataPath = DataPath + "Home\\Sound\\crow.mp3";
-                }
-
-                try
-                {
-                    axWMP_sound.URL = SoundDataPath;
-                    axWMP_sound.Ctlcontrols.play();
-                    //sp.SoundLocation = VoicePath;
-                    //sp.Play();
-                }
-                catch
-                {
-                    MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+            try
+            {
+                axWMP_sound.URL = SoundDataPath;
+                axWMP_sound.Ctlcontrols.play();
+            }
+            catch
+            {
+                MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        // 放置語音部份，取得時間點
+        // 隨機取得時間間隔點
         private int GetIntervalTime(int min_minute, int max_minute)
         {
             // 取real亂數
@@ -698,27 +825,19 @@ namespace TourabuTool
         // 放置語音部份，觸發了時間點
         private void VoiceTimer_Tick(object sender, EventArgs e)
         {
-            // 有開啟語音選項
-            if (VoiceCheckBox.Checked == true) 
-            {
-                // 呼叫撥放器
-                // System.Media.SoundPlayer sp = new System.Media.SoundPlayer();
-                //AxWMPLib.AxWindowsMediaPlayer sp = new AxWMPLib.AxWindowsMediaPlayer();
-                axWMP_voice.settings.autoStart = false;
-                axWMP_voice.settings.volume = VolumeTrackBar.Value;
+            axWMP_voice.settings.autoStart = false;
+            axWMP_voice.settings.setMode("loop", false);
+            axWMP_voice.Ctlcontrols.stop();
 
-                try
-                {
-                    String VoicePath = DataPath + MainForm.mySettings.PathToukennSetting + "\\time.wav";
-                    axWMP_voice.URL = VoicePath;
-                    axWMP_voice.Ctlcontrols.play();
-                    //sp.SoundLocation = VoicePath;
-                    //sp.Play();
-                }
-                catch
-                {
-                    MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+            try
+            {
+                String VoicePath = DataPath + ToukennComboBox.Text + "\\time.wav";
+                axWMP_voice.URL = VoicePath;
+                axWMP_voice.Ctlcontrols.play();
+            }
+            catch
+            {
+                MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             // 下次的觸發點
@@ -726,66 +845,42 @@ namespace TourabuTool
         }
         // 點擊語音部分
         private void ToukennPictureBox_MouseClick(object sender, MouseEventArgs e)
-        {           
-            // 先檢查確實點在刀男身上，並且有開起語音選項
-            if (HitTest(ToukennPictureBox, e.X, e.Y) && VoiceCheckBox.Checked == true) 
+        {
+            String VoicePath;
+            
+            // 先檢查確實點在刀男身上
+            if (HitTest(ToukennPictureBox, e.X, e.Y)) 
             {
-                // 呼叫撥放器
-                //System.Media.SoundPlayer sp = new System.Media.SoundPlayer(); 
-                //axWMPLib.AxWindowsMediaPlayer sp = new AxWMPLib.AxWindowsMediaPlayer();
                 axWMP_voice.settings.autoStart = false;
-                axWMP_voice.settings.volume = VolumeTrackBar.Value;
+                axWMP_voice.settings.setMode("loop", false);
+                axWMP_voice.Ctlcontrols.stop();
 
                 // 取real亂數
                 Random rnd = new Random(Guid.NewGuid().GetHashCode());
                 // 亂數範圍從1~3
                 int num = rnd.Next(1, 4);
 
-                // 路徑目前先用指定的，之後要改成讀參數式的
                 if (num == 1)
                 {
-                    try
-                    {
-                        String VoicePath = DataPath + MainForm.mySettings.PathToukennSetting + "\\touch_1.wav";
-                        axWMP_voice.URL = VoicePath;
-                        axWMP_voice.Ctlcontrols.play();
-                        //sp.SoundLocation = VoicePath;
-                        //sp.Play();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    VoicePath = DataPath + ToukennComboBox.Text + "\\touch_1.wav";
                 }
                 else if (num == 2)
                 {
-                    try
-                    {
-                        String VoicePath = DataPath + MainForm.mySettings.PathToukennSetting + "\\touch_2.wav";
-                        axWMP_voice.URL = VoicePath;
-                        axWMP_voice.Ctlcontrols.play();
-                        //sp.SoundLocation = VoicePath;
-                        //sp.Play();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    VoicePath = DataPath + ToukennComboBox.Text + "\\touch_2.wav";
                 }
                 else
                 {
-                    try
-                    {
-                        String VoicePath = DataPath + MainForm.mySettings.PathToukennSetting + "\\touch_3.wav";
-                        axWMP_voice.URL = VoicePath;
-                        axWMP_voice.Ctlcontrols.play();
-                        //sp.SoundLocation = VoicePath;
-                        //sp.Play();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    VoicePath = DataPath + ToukennComboBox.Text + "\\touch_3.wav";
+                }
+
+                try
+                {
+                    axWMP_voice.URL = VoicePath;
+                    axWMP_voice.Ctlcontrols.play();
+                }
+                catch
+                {
+                    MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
