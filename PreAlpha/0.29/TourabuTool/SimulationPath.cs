@@ -802,6 +802,10 @@ namespace TourabuTool
             {
                 SoundDataPath = DataPath + "Home\\Sound\\crow.mp3";
             }
+            else
+            {
+                return;
+            }
 
             try
             {
