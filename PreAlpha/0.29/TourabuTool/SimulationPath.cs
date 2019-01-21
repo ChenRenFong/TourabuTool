@@ -19,8 +19,8 @@ namespace TourabuTool
         String SoundDataPath;
         String ToukennDataPath;
         // 放置語音間隔，單位分鐘
-        int VoiceIntervalMin = 5;
-        int VoiceIntervalMax = 60;
+        int VoiceIntervalMin = 1;
+        int VoiceIntervalMax = 2;
         // 音效間隔，單位分鐘
         int SoundIntervalMin = 5;
         int SoundIntervalMax = 60;
@@ -68,12 +68,120 @@ namespace TourabuTool
             // 設定使用者介面，刀男
             ToukennComboBox.Items.Add("--");
             ToukennComboBox.Items.Add("3_三日月宗近");
+            ToukennComboBox.Items.Add("5_小狐丸");
+            ToukennComboBox.Items.Add("7_石切丸");
+            ToukennComboBox.Items.Add("9_岩融");
+            ToukennComboBox.Items.Add("11_今劍");
+            ToukennComboBox.Items.Add("12_今劍-極");
+            ToukennComboBox.Items.Add("13_大典太光世");
+            ToukennComboBox.Items.Add("15_ソハヤノツルキ");
+            ToukennComboBox.Items.Add("17_數珠丸恒次");
+            //ToukennComboBox.Items.Add("19_にっかり青江");
+            //ToukennComboBox.Items.Add("20_にっかり青江-極");
+            //ToukennComboBox.Items.Add("23_鳴狐");
+            //ToukennComboBox.Items.Add("24_鳴狐-極");
+            //ToukennComboBox.Items.Add("25_一期一振");
+            //ToukennComboBox.Items.Add("27_鯰尾藤四郎");
+            //ToukennComboBox.Items.Add("28_鯰尾藤四郎-極");
+            //ToukennComboBox.Items.Add("29_骨喰藤四郎");
+            //ToukennComboBox.Items.Add("30_骨喰藤四郎-極");
+            //ToukennComboBox.Items.Add("31_平野藤四郎");
+            //ToukennComboBox.Items.Add("32_平野藤四郎-極");
+            //ToukennComboBox.Items.Add("33_厚藤四郎");
+            //ToukennComboBox.Items.Add("34_厚藤四郎-極");
+            //ToukennComboBox.Items.Add("35_後藤藤四郎");
+            //ToukennComboBox.Items.Add("36_後藤藤四郎-極");
+            //ToukennComboBox.Items.Add("37_信濃藤四郎");
+            //ToukennComboBox.Items.Add("38_信濃藤四郎-極");
+            //ToukennComboBox.Items.Add("39_前田藤四郎");
+            //ToukennComboBox.Items.Add("40_前田藤四郎-極");
+            //ToukennComboBox.Items.Add("41_秋田藤四郎");
+            //ToukennComboBox.Items.Add("42_秋田藤四郎-極");
+            //ToukennComboBox.Items.Add("43_博多藤四郎");
+            //ToukennComboBox.Items.Add("44_博多藤四郎-極");
+            //ToukennComboBox.Items.Add("45_亂藤四郎");
+            //ToukennComboBox.Items.Add("46_亂藤四郎-極");
+            //ToukennComboBox.Items.Add("47_五虎退");
+            //ToukennComboBox.Items.Add("48_五虎退-極");
+            //ToukennComboBox.Items.Add("49_藥研藤四郎");
+            //ToukennComboBox.Items.Add("50_藥研藤四郎-極");
+            //ToukennComboBox.Items.Add("51_包丁藤四郎");
+            //ToukennComboBox.Items.Add("52_包丁藤四郎-極");
+            //ToukennComboBox.Items.Add("53_大包平");
+            //ToukennComboBox.Items.Add("55_鶯丸");
+            //ToukennComboBox.Items.Add("57_明石国行");
+            //ToukennComboBox.Items.Add("59_螢丸");
+            //ToukennComboBox.Items.Add("61_愛染国俊");
+            //ToukennComboBox.Items.Add("62_愛染国俊-極");
+            //ToukennComboBox.Items.Add("63_千子村正");
+            //ToukennComboBox.Items.Add("64_千子村正");
+            //ToukennComboBox.Items.Add("65_蜻蛉切");
+            //ToukennComboBox.Items.Add("67_物吉貞宗");
+            //ToukennComboBox.Items.Add("68_物吉貞宗-極");
+            //ToukennComboBox.Items.Add("69_太鼓鐘貞宗");
+            //ToukennComboBox.Items.Add("70_太鼓鐘貞宗-極");
+            //ToukennComboBox.Items.Add("71_龜甲貞宗");
+            //ToukennComboBox.Items.Add("72_龜甲貞宗-極");
+            //ToukennComboBox.Items.Add("73_燭台切光忠");
+            //ToukennComboBox.Items.Add("75_大般若長光");
+            //ToukennComboBox.Items.Add("77_小竜景光");
+            //ToukennComboBox.Items.Add("79_江雪左文字");
+            //ToukennComboBox.Items.Add("81_宗三左文字");
+            //ToukennComboBox.Items.Add("82_宗三左文字-極");
+            //ToukennComboBox.Items.Add("83_小夜左文字");
+            //ToukennComboBox.Items.Add("84_小夜左文字-極");
             ToukennComboBox.Items.Add("85_加州清光");
             ToukennComboBox.Items.Add("86_加州清光-極");
+            //ToukennComboBox.Items.Add("87_大和守安定");
+            //ToukennComboBox.Items.Add("88_大和守安定-極");
             ToukennComboBox.Items.Add("89_歌仙兼定");
+            //ToukennComboBox.Items.Add("90_歌仙兼定-極");
+            //ToukennComboBox.Items.Add("91_和泉守兼定");
+            //ToukennComboBox.Items.Add("92_和泉守兼定-極");
             ToukennComboBox.Items.Add("93_陸奧守吉行");
+            //ToukennComboBox.Items.Add("94_陸奧守吉行-極");
             ToukennComboBox.Items.Add("95_山姥切国広");
+            //ToukennComboBox.Items.Add("96_山姥切国広-極");
+            //ToukennComboBox.Items.Add("97_山伏国広");
+            //ToukennComboBox.Items.Add("99_堀川国広");
+            //ToukennComboBox.Items.Add("100_堀川国広-極");
             ToukennComboBox.Items.Add("101_蜂須賀虎徹");
+            //ToukennComboBox.Items.Add("102_蜂須賀虎徹-極");
+            //ToukennComboBox.Items.Add("103_浦島虎徹");
+            //ToukennComboBox.Items.Add("104_浦島虎徹-極");
+            //ToukennComboBox.Items.Add("105_長曾祢虎徹");
+            //ToukennComboBox.Items.Add("106_長曾祢虎徹-極");
+            //ToukennComboBox.Items.Add("107_髭切");
+            //ToukennComboBox.Items.Add("112_膝丸");
+            //ToukennComboBox.Items.Add("116_大俱利伽羅");
+            //ToukennComboBox.Items.Add("117_大俱利伽羅-極");
+            //ToukennComboBox.Items.Add("118_へし切長谷部");
+            //ToukennComboBox.Items.Add("119_へし切長谷部-極");
+            //ToukennComboBox.Items.Add("120_不動行光");
+            //ToukennComboBox.Items.Add("121_不動行光-極");
+            //ToukennComboBox.Items.Add("122_獅子王");
+            //ToukennComboBox.Items.Add("124_小烏丸");
+            //ToukennComboBox.Items.Add("128_同田貫正国");
+            //ToukennComboBox.Items.Add("129_同田貫正国-極");
+            //ToukennComboBox.Items.Add("130_鶴丸国永");
+            //ToukennComboBox.Items.Add("132_太郎太刀");
+            //ToukennComboBox.Items.Add("133_太郎太刀-極");
+            //ToukennComboBox.Items.Add("134_次郎太刀");
+            //ToukennComboBox.Items.Add("135_次郎太刀-極");
+            //ToukennComboBox.Items.Add("136_日本號");
+            //ToukennComboBox.Items.Add("138_御手杵");
+            //ToukennComboBox.Items.Add("140_巴形薙刀");
+            //ToukennComboBox.Items.Add("142_毛利藤四郎");
+            //ToukennComboBox.Items.Add("144_篭手切江");
+            //ToukennComboBox.Items.Add("146_謙信景光");
+            //ToukennComboBox.Items.Add("148_小豆長光");
+            //ToukennComboBox.Items.Add("150_日向正宗");
+            //ToukennComboBox.Items.Add("152_靜形薙刀");
+            //ToukennComboBox.Items.Add("154_南泉一文字");
+            //ToukennComboBox.Items.Add("156_千代金丸");
+            //ToukennComboBox.Items.Add("158_山姥切長義");
+            //ToukennComboBox.Items.Add("160_豐前江");
+            //ToukennComboBox.Items.Add("162_祢々切丸");
 
             ToukennComboBox.Text = MainForm.mySettings.PathToukennSetting;
 
@@ -184,13 +292,37 @@ namespace TourabuTool
                     {
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.08);
                     }
+                    else if (ToukennComboBox.Text == "12_今劍-極")
+                    {
+                        newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.045);
+                    }
                     else if (ToukennComboBox.Text == "95_山姥切国広")
                     {
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.04);
                     }
-                    else if (ToukennComboBox.Text == "93_陸奧守吉行")
+                    else if (ToukennComboBox.Text == "7_石切丸" || ToukennComboBox.Text == "93_陸奧守吉行")
                     {
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.018);
+                    }
+                    else if (ToukennComboBox.Text == "13_大典太光世")
+                    {
+                        newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.014);
+                    }
+                    else if (ToukennComboBox.Text == "9_岩融" || ToukennComboBox.Text == "17_數珠丸恒次")
+                    {
+                        newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * -0.01);
+                    }
+                    else if (ToukennComboBox.Text == "15_ソハヤノツルキ")
+                    {
+                        newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * -0.027);
+                    }
+                    else if (ToukennComboBox.Text == "5_小狐丸")
+                    {
+                        newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * -0.03);
+                    }
+                    else if (ToukennComboBox.Text == "11_今劍")
+                    {
+                        newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * -0.04);
                     }
                     else
                     {
@@ -200,17 +332,38 @@ namespace TourabuTool
                     // 刀男的身高係數，後面乘上的小數點，值越小刀男越高，反之越矮
                     // 按係數低至高排列
                     int newY = 0;
-                    if (ToukennComboBox.Text == "3_三日月宗近" || ToukennComboBox.Text == "89_歌仙兼定" || ToukennComboBox.Text == "93_陸奧守吉行")
+                    if (ToukennComboBox.Text == "9_岩融")
+                    {
+                        newY = (int)(HonnmaruPictureBox.Height * -0.105);
+                    }
+                    else if (ToukennComboBox.Text == "7_石切丸")
+                    {
+                        newY = (int)(HonnmaruPictureBox.Height * 0.03);
+                    }
+                    else if (ToukennComboBox.Text == "5_小狐丸")
+                    {
+                        newY = (int)(HonnmaruPictureBox.Height * 0.055);
+                    }
+                    else if (ToukennComboBox.Text == "13_大典太光世")
+                    {
+                        newY = (int)(HonnmaruPictureBox.Height * 0.08);
+                    }
+                    else if (ToukennComboBox.Text == "3_三日月宗近" || ToukennComboBox.Text == "12_今劍-極" || ToukennComboBox.Text == "15_ソハヤノツルキ" || 
+                             ToukennComboBox.Text == "89_歌仙兼定" || ToukennComboBox.Text == "93_陸奧守吉行")
                     {
                         newY = (int)(HonnmaruPictureBox.Height * 0.085);
                     }
-                    else if (ToukennComboBox.Text == "101_蜂須賀虎徹" || ToukennComboBox.Text == "95_山姥切国広")
+                    else if (ToukennComboBox.Text == "17_數珠丸恒次" || ToukennComboBox.Text == "95_山姥切国広" || ToukennComboBox.Text == "101_蜂須賀虎徹")
                     {
                         newY = (int)(HonnmaruPictureBox.Height * 0.11);
                     }
                     else if (ToukennComboBox.Text == "85_加州清光" || ToukennComboBox.Text == "86_加州清光-極")
                     {
                         newY = (int)(HonnmaruPictureBox.Height * 0.17);
+                    }
+                    else if (ToukennComboBox.Text == "11_今劍")
+                    {
+                        newY = (int)(HonnmaruPictureBox.Height * 0.28);
                     }
 
                     ToukennPictureBox.Location = new Point(newX, newY);
