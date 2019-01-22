@@ -20,9 +20,9 @@ namespace TourabuTool
         String ToukennDataPath;
         // 放置語音間隔，單位分鐘
         int VoiceIntervalMin = 1;
-        int VoiceIntervalMax = 2;
+        int VoiceIntervalMax = 60;
         // 音效間隔，單位分鐘
-        int SoundIntervalMin = 5;
+        int SoundIntervalMin = 1;
         int SoundIntervalMax = 60;
 
         public SimulationPath()
@@ -191,15 +191,15 @@ namespace TourabuTool
             ToukennPictureBox.BackColor = Color.Transparent;
             ToukennSet();
 
-            // 計時器，用於放置語音，隨機間隔每5~60分鐘一次
+            // 計時器，用於放置語音，隨機間隔每1~60分鐘一次
             VoiceTimer.Interval = GetIntervalTime(VoiceIntervalMin, VoiceIntervalMax);
             VoiceTimer.Start();
 
-            // 計時器，每三十分鐘檢查一次現實時間，如果有設置本丸時間隨現實時間，則會依此改動本丸環境
-            RealTimeTimer.Interval = 10 * 60 * 1000;
+            // 計時器，每分鐘檢查一次現實時間，如果有設置本丸時間隨現實時間，則會依此改動本丸環境
+            RealTimeTimer.Interval = 1 * 60 * 1000;
             RealTimeTimer.Start();
 
-            // 計時器，處理背景音效，隨機間隔每5~60分鐘一次
+            // 計時器，處理背景音效，隨機間隔每1~60分鐘一次
             SoundTimer.Interval = GetIntervalTime(SoundIntervalMin, SoundIntervalMax);
             SoundTimer.Start();
         }
