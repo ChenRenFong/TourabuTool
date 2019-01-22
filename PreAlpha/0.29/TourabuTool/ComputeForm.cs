@@ -16,7 +16,8 @@ namespace TourabuTool
         // 目前所有可出陣地圖的總數量，不含活動地圖
         // +2：6-4地圖有三種變化
         // +2：7-4地圖有三種變化
-        private const int maps = 7*4 +2 +2;
+        // +1：8圖目前只有一張地圖
+        private const int maps = 7*4 +2 +2 +1;
         // 儲存隊中最高等級刀劍男士與對應的檢非違使經驗值之資料庫資料
         private int[,] PoliceExpList = new int[maxLv, 1];
         // 地圖經驗清單
@@ -155,7 +156,7 @@ namespace TourabuTool
                 MapExpList[num, 2] = "0";
                 MapExpList[num, 3] = "1";
             }
-            // 平均經驗算式：加總（經驗 *（該經驗的所有場數 / 該地圖中所有戰鬥場數）），注意！一般戰鬥與Boss戰鬥為分開計算！
+            // 平均經驗算式：加總（經驗 *（該經驗的所有場數 / 該地圖中所有戰鬥場數）），注意！一般戰鬥與Boss戰鬥為分開計算！小數點後一位，四捨五入
             // 平均場數算式：( 走到底的最大場數 + 走到底的最小場數 ) / 2，注意！並不將Boss戰鬥加入場數計算中！
             // 1圖
             MapExpList[0, 0] = "1-1";       MapExpList[0, 1] = "30";      MapExpList[0, 2] = "90";      MapExpList[0, 3] = "1.5";
@@ -204,6 +205,9 @@ namespace TourabuTool
             MapExpList[29, 0] = "7-4-L";    MapExpList[29, 1] = "400";    MapExpList[29, 2] = "2000";   MapExpList[29, 3] = "10";
             MapExpList[30, 0] = "7-4-M";    MapExpList[30, 1] = "800";    MapExpList[30, 2] = "4000";   MapExpList[30, 3] = "7";
             MapExpList[31, 0] = "7-4-S";    MapExpList[31, 1] = "1200";   MapExpList[31, 2] = "6000";   MapExpList[31, 3] = "4";
+            // 8圖
+            // 8-1一般戰鬥：750*(8/13) + 800*(5/13)
+            MapExpList[32, 0] = "8-1";      MapExpList[32, 1] = "769.2";  MapExpList[32, 2] = "3500";   MapExpList[32, 3] = "6.5";
         }
         // 對界面內容做出初始化設定
         private void InitialSetting()
@@ -236,9 +240,8 @@ namespace TourabuTool
             OperateComboBox.Items.Add("懶人模式");
             OperateComboBox.Items.Add("自定義模式");
 
-            // 由於懶人模式目前未實現完成，因此預設模式暫時為自定義模式
+            // 預設模式
             OperateComboBox.Text = "懶人模式";
-            // OperateComboBox.Text = "自定義模式";
 
             // 地圖代號
             for (int mapTime = 1; mapTime <= 7; mapTime++) 
@@ -261,6 +264,9 @@ namespace TourabuTool
                     }
                 }
             }
+
+            // 8圖目前只有一張地圖，所以暫時先額外增加
+            MapComboBox.Items.Add("8-1");
 
             MapComboBox.Text = "7-4-L";
 

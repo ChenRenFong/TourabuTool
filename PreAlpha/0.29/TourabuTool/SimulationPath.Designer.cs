@@ -49,6 +49,7 @@
             this.axWMP_voice = new AxWMPLib.AxWindowsMediaPlayer();
             this.axWMP_sound = new AxWMPLib.AxWindowsMediaPlayer();
             this.SoundTimer = new System.Windows.Forms.Timer(this.components);
+            this.UiShowLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.HonnmaruPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToukennPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
@@ -69,7 +70,7 @@
             this.RealTimeCheckBox.AutoSize = true;
             this.RealTimeCheckBox.Checked = true;
             this.RealTimeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RealTimeCheckBox.Location = new System.Drawing.Point(12, 12);
+            this.RealTimeCheckBox.Location = new System.Drawing.Point(12, 617);
             this.RealTimeCheckBox.Name = "RealTimeCheckBox";
             this.RealTimeCheckBox.Size = new System.Drawing.Size(204, 24);
             this.RealTimeCheckBox.TabIndex = 3;
@@ -81,7 +82,7 @@
             // 
             this.HonnmaruComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.HonnmaruComboBox.FormattingEnabled = true;
-            this.HonnmaruComboBox.Location = new System.Drawing.Point(223, 10);
+            this.HonnmaruComboBox.Location = new System.Drawing.Point(223, 615);
             this.HonnmaruComboBox.Name = "HonnmaruComboBox";
             this.HonnmaruComboBox.Size = new System.Drawing.Size(159, 28);
             this.HonnmaruComboBox.TabIndex = 4;
@@ -91,9 +92,9 @@
             // 
             this.ToukennComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ToukennComboBox.FormattingEnabled = true;
-            this.ToukennComboBox.Location = new System.Drawing.Point(783, 10);
+            this.ToukennComboBox.Location = new System.Drawing.Point(752, 615);
             this.ToukennComboBox.Name = "ToukennComboBox";
-            this.ToukennComboBox.Size = new System.Drawing.Size(159, 28);
+            this.ToukennComboBox.Size = new System.Drawing.Size(190, 28);
             this.ToukennComboBox.TabIndex = 5;
             this.ToukennComboBox.SelectedIndexChanged += new System.EventHandler(this.ToukennComboBox_SelectedIndexChanged);
             // 
@@ -136,7 +137,7 @@
             // HonnmaruPictureBox
             // 
             this.HonnmaruPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.HonnmaruPictureBox.Location = new System.Drawing.Point(0, 50);
+            this.HonnmaruPictureBox.Location = new System.Drawing.Point(0, 0);
             this.HonnmaruPictureBox.Name = "HonnmaruPictureBox";
             this.HonnmaruPictureBox.Size = new System.Drawing.Size(955, 582);
             this.HonnmaruPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -145,7 +146,7 @@
             // 
             // ToukennPictureBox
             // 
-            this.ToukennPictureBox.Location = new System.Drawing.Point(0, 50);
+            this.ToukennPictureBox.Location = new System.Drawing.Point(0, 0);
             this.ToukennPictureBox.Name = "ToukennPictureBox";
             this.ToukennPictureBox.Size = new System.Drawing.Size(490, 582);
             this.ToukennPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -155,7 +156,7 @@
             // 
             // VolumeTrackBar
             // 
-            this.VolumeTrackBar.Location = new System.Drawing.Point(617, 12);
+            this.VolumeTrackBar.Location = new System.Drawing.Point(586, 617);
             this.VolumeTrackBar.Maximum = 100;
             this.VolumeTrackBar.Name = "VolumeTrackBar";
             this.VolumeTrackBar.Size = new System.Drawing.Size(84, 45);
@@ -166,7 +167,7 @@
             // VolumeLabel
             // 
             this.VolumeLabel.AutoSize = true;
-            this.VolumeLabel.Location = new System.Drawing.Point(698, 13);
+            this.VolumeLabel.Location = new System.Drawing.Point(667, 618);
             this.VolumeLabel.Name = "VolumeLabel";
             this.VolumeLabel.Size = new System.Drawing.Size(34, 20);
             this.VolumeLabel.TabIndex = 12;
@@ -177,7 +178,7 @@
             this.VoiceCheckBox.AutoSize = true;
             this.VoiceCheckBox.Checked = true;
             this.VoiceCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.VoiceCheckBox.Location = new System.Drawing.Point(485, 12);
+            this.VoiceCheckBox.Location = new System.Drawing.Point(454, 617);
             this.VoiceCheckBox.Name = "VoiceCheckBox";
             this.VoiceCheckBox.Size = new System.Drawing.Size(60, 24);
             this.VoiceCheckBox.TabIndex = 8;
@@ -190,7 +191,7 @@
             this.SoundCheckBox.AutoSize = true;
             this.SoundCheckBox.Checked = true;
             this.SoundCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.SoundCheckBox.Location = new System.Drawing.Point(551, 12);
+            this.SoundCheckBox.Location = new System.Drawing.Point(520, 617);
             this.SoundCheckBox.Name = "SoundCheckBox";
             this.SoundCheckBox.Size = new System.Drawing.Size(60, 24);
             this.SoundCheckBox.TabIndex = 9;
@@ -201,7 +202,7 @@
             // axWMP_voice
             // 
             this.axWMP_voice.Enabled = true;
-            this.axWMP_voice.Location = new System.Drawing.Point(0, 595);
+            this.axWMP_voice.Location = new System.Drawing.Point(0, 0);
             this.axWMP_voice.Name = "axWMP_voice";
             this.axWMP_voice.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWMP_voice.OcxState")));
             this.axWMP_voice.Size = new System.Drawing.Size(37, 37);
@@ -211,7 +212,7 @@
             // axWMP_sound
             // 
             this.axWMP_sound.Enabled = true;
-            this.axWMP_sound.Location = new System.Drawing.Point(0, 595);
+            this.axWMP_sound.Location = new System.Drawing.Point(0, 0);
             this.axWMP_sound.Name = "axWMP_sound";
             this.axWMP_sound.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWMP_sound.OcxState")));
             this.axWMP_sound.Size = new System.Drawing.Size(37, 37);
@@ -222,12 +223,23 @@
             // 
             this.SoundTimer.Tick += new System.EventHandler(this.SoundTimer_Tick);
             // 
+            // UiShowLabel
+            // 
+            this.UiShowLabel.Location = new System.Drawing.Point(0, 585);
+            this.UiShowLabel.Name = "UiShowLabel";
+            this.UiShowLabel.Size = new System.Drawing.Size(955, 20);
+            this.UiShowLabel.TabIndex = 15;
+            this.UiShowLabel.Text = "︾";
+            this.UiShowLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UiShowLabel.Click += new System.EventHandler(this.UiShowLabel_Click);
+            // 
             // SimulationPath
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(954, 631);
+            this.ClientSize = new System.Drawing.Size(954, 657);
+            this.Controls.Add(this.UiShowLabel);
             this.Controls.Add(this.ToukennPictureBox);
             this.Controls.Add(this.VolumeLabel);
             this.Controls.Add(this.SoundCheckBox);
@@ -281,5 +293,6 @@
         private AxWMPLib.AxWindowsMediaPlayer axWMP_voice;
         private AxWMPLib.AxWindowsMediaPlayer axWMP_sound;
         private System.Windows.Forms.Timer SoundTimer;
+        private System.Windows.Forms.Label UiShowLabel;
     }
 }

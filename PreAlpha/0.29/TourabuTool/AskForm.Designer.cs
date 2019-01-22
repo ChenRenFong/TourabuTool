@@ -186,7 +186,7 @@
             this.SmallDiceButton.Name = "SmallDiceButton";
             this.SmallDiceButton.Size = new System.Drawing.Size(72, 22);
             this.SmallDiceButton.TabIndex = 12;
-            this.SmallDiceButton.Text = "(dice6)";
+            this.SmallDiceButton.Text = "(diceNum)";
             this.SmallDiceButton.UseVisualStyleBackColor = true;
             this.SmallDiceButton.Click += new System.EventHandler(this.SmallDiceButton_Click);
             // 

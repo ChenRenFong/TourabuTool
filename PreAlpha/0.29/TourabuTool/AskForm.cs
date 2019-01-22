@@ -34,7 +34,7 @@ namespace TourabuTool
                         "預設與TourabuTool.exe同一資料夾下的Record資料夾中的record.txt即是。" + "\r\n" +
                         "特殊指令：" + "\r\n" +
                         "(poker)：會隨機替換成任一撲克牌花色。" + "\r\n" +
-                        "(dice6)：會隨機替換成1至6任一數字。" + "\r\n";  
+                        "(diceNum)：會隨機替換成0至9任一數字。" + "\r\n";  
 
         public AskForm()
         {
@@ -87,7 +87,7 @@ namespace TourabuTool
             string inputStr = InputTextBox.Text;
 
             finalOutputStr = FunctionPoker(inputStr);
-            finalOutputStr = FunctionDice6(finalOutputStr);
+            finalOutputStr = FunctionDiceNum(finalOutputStr);
 
             // 先取得時間資訊的分隔線
             string timeStr = "********************" + DateTime.Now.ToString() + "********************" + "\r\n";
@@ -211,12 +211,12 @@ namespace TourabuTool
                 return ' ';
             }
         }
-        // 實作(dice6)的功能
-        private string FunctionDice6(string inputStr)
+        // 實作(diceNum)的功能
+        private string FunctionDiceNum(string inputStr)
         {
             // 用來做處理的字串陣列
             Char[] workStr = new Char[inputStr.Length];
-            // 用來記錄(poker)第一個字元的所在位置
+            // 用來記錄(diceNum)第一個字元的所在位置
             List<int> firstCharList = new List<int>();
             // 用來記錄需要刪除的字元的所在位置
             List<int> deleteCharList = new List<int>();
@@ -225,10 +225,10 @@ namespace TourabuTool
             {
                 workStr[i] = inputStr[i];
             }
-            // 先找出(dice6)的所有第一個字元的所在位置，並記下須要刪除的字元位置
-            for (int i = 0; i < workStr.Length && (i + 6) < workStr.Length; i++)
+            // 先找出(diceNum)的所有第一個字元的所在位置，並記下須要刪除的字元位置
+            for (int i = 0; i < workStr.Length && (i + 8) < workStr.Length; i++)
             {
-                if (workStr[i] == '(' && workStr[i + 1] == 'd' && workStr[i + 2] == 'i' && workStr[i + 3] == 'c' && workStr[i + 4] == 'e' && workStr[i + 5] == '6' && workStr[i + 6] == ')')
+                if (workStr[i] == '(' && workStr[i + 1] == 'd' && workStr[i + 2] == 'i' && workStr[i + 3] == 'c' && workStr[i + 4] == 'e' && workStr[i + 5] == 'N' && workStr[i + 6] == 'u' && workStr[i + 7] == 'm' && workStr[i + 8] == ')')
                 {
                     firstCharList.Add(i);
                     deleteCharList.Add(i + 1);
@@ -237,18 +237,20 @@ namespace TourabuTool
                     deleteCharList.Add(i + 4);
                     deleteCharList.Add(i + 5);
                     deleteCharList.Add(i + 6);
+                    deleteCharList.Add(i + 7);
+                    deleteCharList.Add(i + 8);
                 }
             }
             // 開始逐一做替換處理
             for (int i = 0; i < firstCharList.Count; i++)
             {
-                workStr[firstCharList[i]] = GetDice6Rnd();
+                workStr[firstCharList[i]] = GetDiceNumRnd();
             }
 
             // 用來幫outputStr數數用的
             int num = 0;
-            // 用來儲存輸出的字串陣列，因為(dice6)會被置換，所以每置換一個，長度就會少6
-            Char[] outputStr = new Char[inputStr.Length - (firstCharList.Count * 6)];
+            // 用來儲存輸出的字串陣列，因為(diceNum)會被置換，所以每置換一個，長度就會少6
+            Char[] outputStr = new Char[inputStr.Length - (firstCharList.Count * 8)];
             // 開始塞入
             for (int i = 0; i < workStr.Length; i++)
             {
@@ -271,15 +273,19 @@ namespace TourabuTool
             // 回傳結果字串
             return string.Concat(outputStr);
         }
-        // 跑(dice6)亂數替換花色
-        private Char GetDice6Rnd()
+        // 跑(diceNum)亂數替換花色
+        private Char GetDiceNumRnd()
         {
             // 取real亂數
             Random rnd = new Random(Guid.NewGuid().GetHashCode());
-            // 亂數範圍從1~6
-            int num = rnd.Next(1, 7);
+            // 亂數範圍從0~9
+            int num = rnd.Next(0, 10);
 
-            if (num == 1)
+            if (num == 0)
+            {
+                return '0';
+            }
+            else if (num == 1)
             {
                 return '1';
             }
@@ -302,6 +308,18 @@ namespace TourabuTool
             else if (num == 6)
             {
                 return '6';
+            }
+            else if (num == 7)
+            {
+                return '7';
+            }
+            else if (num == 8)
+            {
+                return '8';
+            }
+            else if (num == 9)
+            {
+                return '9';
             }
             else
             {
@@ -400,7 +418,7 @@ namespace TourabuTool
         }
         private void SmallDiceButton_Click(object sender, EventArgs e)
         {
-            Clipboard.SetDataObject("(dice6)");
+            Clipboard.SetDataObject("(diceNum)");
         }
         // 可以開啟之前的記錄存檔
         private void ShowRecordButton_Click(object sender, EventArgs e)
