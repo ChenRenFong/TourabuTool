@@ -18,7 +18,10 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2019年1月22日" + "\r\n" +
+            InformationTextBox.Text = "2019年1月27日" + "\r\n" +
+                                      "模擬通路：增加景趣與更多刀男資料。" + "\r\n\r\n" + 
+                                      
+                                      "2019年1月22日" + "\r\n" +
                                       "本丸記事：指令(dice6)改成(diceNum)，其亂數範圍從1~6更改至0~9。" + "\r\n" +
                                       "出陣助手：新增地圖8-1的資料。" + "\r\n" +
                                       "模擬通路：增加更多刀男資料。" + "\r\n\r\n" + 
