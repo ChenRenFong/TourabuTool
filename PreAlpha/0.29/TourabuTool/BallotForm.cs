@@ -137,6 +137,9 @@ namespace TourabuTool
             List[158, 0] = "山姥切長義";      List[158, 1] = "打刀";     List[158, 2] = "無刀派";
             List[160, 0] = "豐前江";          List[160, 1] = "打刀";     List[160, 2] = "江";
             List[162, 0] = "祢々切丸";        List[162, 1] = "大太刀";   List[162, 2] = "無刀派";
+            List[164, 0] = "白山吉光";        List[164, 1] = "劍";       List[164, 2] = "粟田口";
+            List[166, 0] = "南海太郎朝尊";    List[166, 1] = "打刀";     List[166, 2] = "無刀派";
+            List[168, 0] = "肥前忠広";        List[168, 1] = "脇差";     List[168, 2] = "無刀派";
         }
         // 當按鍵點下時，會先檢查當前標籤，再依據標籤執行抽籤動作
         private void BallotButton_Click(object sender, EventArgs e)
@@ -149,7 +152,8 @@ namespace TourabuTool
                 // 先檢查各種類都至少要勾一個
                 if (TantouCheckBox.Checked == true || WakizasiCheckBox.Checked == true ||
                     UchigatanaCheckBox.Checked == true || TachiCheckBox.Checked == true ||
-                    OotachiCheckBox.Checked == true || YariCheckBox.Checked == true || NaginataCheckBox.Checked == true)
+                    OotachiCheckBox.Checked == true || YariCheckBox.Checked == true ||
+                    NaginataCheckBox.Checked == true || TsurugiCheckBox.Checked == true)
                 {
                     num = GetNum();
                     InformationLabel.Text = num.ToString() + "   " + List[num, 0];
@@ -194,7 +198,8 @@ namespace TourabuTool
                     ((List[num, 1] == "太刀") && (TachiCheckBox.Checked == true)) ||
                     ((List[num, 1] == "大太刀") && (OotachiCheckBox.Checked == true)) ||
                     ((List[num, 1] == "槍") && (YariCheckBox.Checked == true)) ||
-                    ((List[num, 1] == "薙刀") && (NaginataCheckBox.Checked == true)))
+                    ((List[num, 1] == "薙刀") && (NaginataCheckBox.Checked == true)) ||
+                    ((List[num, 1] == "劍") && (TsurugiCheckBox.Checked == true)))
                     {
                         return true;
                     }
@@ -235,6 +240,7 @@ namespace TourabuTool
                 OotachiCheckBox.Enabled = true;
                 YariCheckBox.Enabled = true;
                 NaginataCheckBox.Enabled = true;
+                TsurugiCheckBox.Enabled = true;
                 AllChoose.Enabled = true;
                 AllCancel.Enabled = true;
             }
@@ -248,6 +254,7 @@ namespace TourabuTool
                 OotachiCheckBox.Enabled = false;
                 YariCheckBox.Enabled = false;
                 NaginataCheckBox.Enabled = false;
+                TsurugiCheckBox.Enabled = false;
                 AllChoose.Enabled = false;
                 AllCancel.Enabled = false;
             }
@@ -262,6 +269,7 @@ namespace TourabuTool
             OotachiCheckBox.Checked = true;
             YariCheckBox.Checked = true;
             NaginataCheckBox.Checked = true;
+            TsurugiCheckBox.Checked = true;
         }
         // 一次全不選所有刀種，目前只能配合刀種選擇使用
         private void AllCancel_Click(object sender, EventArgs e)
@@ -273,6 +281,7 @@ namespace TourabuTool
             OotachiCheckBox.Checked = false;
             YariCheckBox.Checked = false;
             NaginataCheckBox.Checked = false;
+            TsurugiCheckBox.Checked = false;
         }
     }
 }

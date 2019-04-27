@@ -285,6 +285,21 @@ namespace TourabuTool
 
             OkButton_Click(sender, e);
         }
+        // 此按鈕表示預設值為劍鍛刀範圍
+        private void Tsurugi_Click(object sender, EventArgs e)
+        {
+            CharcoalNumOneTextBox.Text = "800";
+            SteelNumOneTextBox.Text = "800";
+            WaterNumOneTextBox.Text = "800";
+            StoneNumOneTextBox.Text = "800";
+
+            CharcoalNumTwoTextBox.Text = "950";
+            SteelNumTwoTextBox.Text = "950";
+            WaterNumTwoTextBox.Text = "950";
+            StoneNumTwoTextBox.Text = "950";
+
+            OkButton_Click(sender, e);
+        }
         // 此按鈕表示預設值為輕步兵刀裝範圍
         private void Hohei_Click(object sender, EventArgs e)
         {

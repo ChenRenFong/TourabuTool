@@ -65,6 +65,7 @@
             this.Jyuuhei = new System.Windows.Forms.Button();
             this.Yarihei = new System.Windows.Forms.Button();
             this.Tatehei = new System.Windows.Forms.Button();
+            this.Tsurugi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ChatcoalLabel
@@ -477,11 +478,23 @@
             this.Tatehei.UseVisualStyleBackColor = true;
             this.Tatehei.Click += new System.EventHandler(this.Tatehei_Click);
             // 
+            // Tsurugi
+            // 
+            this.Tsurugi.Location = new System.Drawing.Point(464, 10);
+            this.Tsurugi.Margin = new System.Windows.Forms.Padding(4);
+            this.Tsurugi.Name = "Tsurugi";
+            this.Tsurugi.Size = new System.Drawing.Size(57, 23);
+            this.Tsurugi.TabIndex = 37;
+            this.Tsurugi.Text = "劍";
+            this.Tsurugi.UseVisualStyleBackColor = true;
+            this.Tsurugi.Click += new System.EventHandler(this.Tsurugi_Click);
+            // 
             // BetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(726, 167);
+            this.Controls.Add(this.Tsurugi);
             this.Controls.Add(this.Tatehei);
             this.Controls.Add(this.Yarihei);
             this.Controls.Add(this.Jyuuhei);
@@ -575,5 +588,6 @@
         private System.Windows.Forms.Button Jyuuhei;
         private System.Windows.Forms.Button Yarihei;
         private System.Windows.Forms.Button Tatehei;
+        private System.Windows.Forms.Button Tsurugi;
     }
 }

@@ -42,15 +42,16 @@
             this.TouhaOnlyLabel = new System.Windows.Forms.Label();
             this.AllChoose = new System.Windows.Forms.Button();
             this.AllCancel = new System.Windows.Forms.Button();
+            this.TsurugiCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // BallotButton
             // 
             this.BallotButton.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.BallotButton.Location = new System.Drawing.Point(502, 13);
+            this.BallotButton.Location = new System.Drawing.Point(476, 12);
             this.BallotButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BallotButton.Name = "BallotButton";
-            this.BallotButton.Size = new System.Drawing.Size(50, 56);
+            this.BallotButton.Size = new System.Drawing.Size(67, 26);
             this.BallotButton.TabIndex = 2;
             this.BallotButton.Text = "GO";
             this.BallotButton.UseVisualStyleBackColor = true;
@@ -169,7 +170,7 @@
             // 
             this.TouhaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TouhaComboBox.FormattingEnabled = true;
-            this.TouhaComboBox.Location = new System.Drawing.Point(383, 15);
+            this.TouhaComboBox.Location = new System.Drawing.Point(363, 13);
             this.TouhaComboBox.Name = "TouhaComboBox";
             this.TouhaComboBox.Size = new System.Drawing.Size(96, 24);
             this.TouhaComboBox.TabIndex = 15;
@@ -178,7 +179,7 @@
             // TouhaOnlyLabel
             // 
             this.TouhaOnlyLabel.AutoSize = true;
-            this.TouhaOnlyLabel.Location = new System.Drawing.Point(309, 18);
+            this.TouhaOnlyLabel.Location = new System.Drawing.Point(289, 16);
             this.TouhaOnlyLabel.Name = "TouhaOnlyLabel";
             this.TouhaOnlyLabel.Size = new System.Drawing.Size(68, 16);
             this.TouhaOnlyLabel.TabIndex = 16;
@@ -208,11 +209,25 @@
             this.AllCancel.UseVisualStyleBackColor = true;
             this.AllCancel.Click += new System.EventHandler(this.AllCancel_Click);
             // 
+            // TsurugiCheckBox
+            // 
+            this.TsurugiCheckBox.AutoSize = true;
+            this.TsurugiCheckBox.Checked = true;
+            this.TsurugiCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TsurugiCheckBox.Location = new System.Drawing.Point(485, 52);
+            this.TsurugiCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TsurugiCheckBox.Name = "TsurugiCheckBox";
+            this.TsurugiCheckBox.Size = new System.Drawing.Size(39, 20);
+            this.TsurugiCheckBox.TabIndex = 19;
+            this.TsurugiCheckBox.Text = "劍";
+            this.TsurugiCheckBox.UseVisualStyleBackColor = true;
+            // 
             // BallotForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 151);
+            this.ClientSize = new System.Drawing.Size(555, 151);
+            this.Controls.Add(this.TsurugiCheckBox);
             this.Controls.Add(this.AllCancel);
             this.Controls.Add(this.AllChoose);
             this.Controls.Add(this.TouhaOnlyLabel);
@@ -260,5 +275,6 @@
         private System.Windows.Forms.Label TouhaOnlyLabel;
         private System.Windows.Forms.Button AllChoose;
         private System.Windows.Forms.Button AllCancel;
+        private System.Windows.Forms.CheckBox TsurugiCheckBox;
     }
 }
