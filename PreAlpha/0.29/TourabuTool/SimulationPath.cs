@@ -58,7 +58,7 @@ namespace TourabuTool
             HonnmaruComboBox.Items.Add("十五夜");
             HonnmaruComboBox.Items.Add("撒豆驅鬼節");
             HonnmaruComboBox.Items.Add("立春-梅");
-            //HonnmaruComboBox.Items.Add("立夏-藤"); //未入手，日期設置：5/5~7
+            HonnmaruComboBox.Items.Add("立夏-藤");
             HonnmaruComboBox.Items.Add("立秋-向日葵");
             HonnmaruComboBox.Items.Add("立冬-菊");
 
@@ -188,8 +188,8 @@ namespace TourabuTool
             ToukennComboBox.Items.Add("160_豐前江");
             ToukennComboBox.Items.Add("162_祢々切丸");
             ToukennComboBox.Items.Add("164_白山吉光");
-            //ToukennComboBox.Items.Add("166_南海太郎朝尊"); //未入手
-            //ToukennComboBox.Items.Add("168_肥前忠広"); //未入手
+            ToukennComboBox.Items.Add("166_南海太郎朝尊");
+            ToukennComboBox.Items.Add("168_肥前忠広");
 
             ToukennComboBox.Text = MainForm.mySettings.PathToukennSetting;
 
@@ -337,7 +337,7 @@ namespace TourabuTool
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.035);
                     }
                     else if (ToukennComboBox.Text == "46_亂藤四郎-極" || ToukennComboBox.Text == "71_龜甲貞宗" || ToukennComboBox.Text == "79_江雪左文字" ||
-                             ToukennComboBox.Text == "81_宗三左文字" || ToukennComboBox.Text == "112_膝丸")
+                             ToukennComboBox.Text == "81_宗三左文字" || ToukennComboBox.Text == "112_膝丸" || ToukennComboBox.Text == "166_南海太郎朝尊")
                     {
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.03);
                     }
@@ -364,7 +364,7 @@ namespace TourabuTool
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.018);
                     }
                     else if (ToukennComboBox.Text == "13_大典太光世" || ToukennComboBox.Text == "23_鳴狐" || ToukennComboBox.Text == "53_大包平" ||
-                             ToukennComboBox.Text == "129_同田貫正国-極")
+                             ToukennComboBox.Text == "129_同田貫正国-極" || ToukennComboBox.Text == "168_肥前忠広")
                     {
                         newX = (int)(0.5 * (HonnmaruPictureBox.Width - ToukennPictureBox.Width) + HonnmaruPictureBox.Width * 0.014);
                     }
@@ -525,7 +525,8 @@ namespace TourabuTool
                         newY = (int)(HonnmaruPictureBox.Height * 0.095);
                     }
                     else if (ToukennComboBox.Text == "75_大般若長光" || ToukennComboBox.Text == "81_宗三左文字" || ToukennComboBox.Text == "91_和泉守兼定" ||
-                             ToukennComboBox.Text == "116_大俱利伽羅" || ToukennComboBox.Text == "128_同田貫正国" || ToukennComboBox.Text == "129_同田貫正国-極")
+                             ToukennComboBox.Text == "116_大俱利伽羅" || ToukennComboBox.Text == "128_同田貫正国" || ToukennComboBox.Text == "129_同田貫正国-極" || 
+                             ToukennComboBox.Text == "166_南海太郎朝尊")
                     {
                         newY = (int)(HonnmaruPictureBox.Height * 0.1);
                     }
@@ -543,6 +544,10 @@ namespace TourabuTool
                              ToukennComboBox.Text == "107_髭切" || ToukennComboBox.Text == "156_千代金丸")
                     {
                         newY = (int)(HonnmaruPictureBox.Height * 0.115);
+                    }
+                    else if (ToukennComboBox.Text == "168_肥前忠広")
+                    {
+                        newY = (int)(HonnmaruPictureBox.Height * 0.117);
                     }
                     else if (ToukennComboBox.Text == "71_龜甲貞宗" || ToukennComboBox.Text == "24_鳴狐-極" || ToukennComboBox.Text == "158_山姥切長義")
                     {
@@ -667,12 +672,9 @@ namespace TourabuTool
         {
             // 如果環境不是目標環境才需要改，預設是目標環境，所以設置不需改變環境，以下會確認是否要改
             bool needTochange = false;
-            
-            axWMP_sound.settings.autoStart = false;
-            axWMP_sound.settings.setMode("loop", false);
-            axWMP_sound.Ctlcontrols.stop();
+            // 預先假定目標環境是沒有loop音效的，由以下確認使否要改動
             bool LoopSoundData = false;
-            
+ 
             // 檢查是否是與現實時間同步本丸環境
             if (RealTimeCheckBox.Checked == true)
             {
@@ -695,7 +697,7 @@ namespace TourabuTool
                 //             2月：冬→冬夜(四種)，2/1~2/2：撒豆驅鬼節→冬夜(四種)，2/3~2/5：立春-梅→撒豆驅鬼節→冬夜(四種)
                 //             3月：春→冬夜(四種)，目前沒有春夜，所以先這樣將就
                 //             4月：春→冬夜(四種)，目前沒有春夜，所以先這樣將就
-                //             4月：春→夏夜，目前沒有春夜，所以先這樣將就
+                //             5月：春→夏夜，目前沒有春夜，所以先這樣將就，5/5~5/7：立夏-藤
                 // 日出日落時間：夏6~8月：5點、19點
                 //               冬12~2月：7點、17點
                 //               春3~5月、秋9~11月：6點、18點
@@ -1195,24 +1197,56 @@ namespace TourabuTool
                     // 白天or夜晚
                     if (hour >= 6 && hour <= 18)
                     {
-                        // 先判斷使否已經是目標佈景，否才須要換
-                        if (HonnmaruNow != "春季")
+                        // 是否是特殊節日
+                        if (day == 5 || day == 6 || day == 7)
                         {
-                            needTochange = true;
-                            
-                            HonnmaruDataPath = "Home\\春季.gif";
-                            HonnmaruNow = "春季";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "立夏-藤")
+                            {
+                                needTochange = true;
+
+                                HonnmaruDataPath = "Home\\立夏-藤.gif";
+                                HonnmaruNow = "立夏-藤";
+                                LoopSoundData = true;
+                            }
+                        }
+                        else
+                        {
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "春季")
+                            {
+                                needTochange = true;
+
+                                HonnmaruDataPath = "Home\\春季.gif";
+                                HonnmaruNow = "春季";
+                            }
                         }
                     }
                     else
                     {
-                        // 先判斷使否已經是目標佈景，否才須要換
-                        if (HonnmaruNow != "夏夜")
+                        // 是否是特殊節日
+                        if (day == 5 || day == 6 || day == 7)
                         {
-                            needTochange = true;
-                            
-                            HonnmaruDataPath = "Home\\夏夜.gif";
-                            HonnmaruNow = "夏夜";
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "立夏-藤")
+                            {
+                                needTochange = true;
+
+                                HonnmaruDataPath = "Home\\立夏-藤.gif";
+                                HonnmaruNow = "立夏-藤";
+                                LoopSoundData = true;
+                            }
+                        }
+                        else
+                        {
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "夏夜")
+                            {
+                                needTochange = true;
+
+                                HonnmaruDataPath = "Home\\夏夜.gif";
+                                HonnmaruNow = "夏夜";
+                            }
                         }
                     }
                 }
@@ -1226,23 +1260,37 @@ namespace TourabuTool
                     HonnmaruDataPath = "Home\\" + HonnmaruComboBox.Text + ".gif";
                     HonnmaruNow = HonnmaruComboBox.Text;
 
-                    if (HonnmaruNow == "雨季")
+                    if (HonnmaruNow == "雨季" || HonnmaruNow == "立夏-藤")
                     {
                         LoopSoundData = true;
                     }
                 }
             }
 
-            // 有選擇音效是常駐loop的本丸環境，僅有在環境改變時設定一次即可
+            // 是否為有常駐音效的本丸環境，僅有在環境改變時設定一次即可
             if (LoopSoundData && needTochange)
             {
                 axWMP_sound.settings.autoStart = false;
                 axWMP_sound.settings.setMode("loop", true);
 
-                // 目前僅雨季有常駐loop音效
+                // 設定相應的loop音效
                 if (HonnmaruNow == "雨季") 
                 {                   
                     SoundDataPath = DataPath + "Home\\Sound\\rain.mp3";
+                }
+                else if (HonnmaruNow == "立夏-藤")
+                {
+                    SoundDataPath = DataPath + "Home\\Sound\\river.mp3";
+                }
+
+                try
+                {
+                    HonnmaruPictureBox.Image = Image.FromFile(DataPath + HonnmaruDataPath);
+                }
+                catch
+                {
+                    MessageBox.Show("無法取得資料，無法更改本丸環境。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
 
                 try
@@ -1255,9 +1303,12 @@ namespace TourabuTool
                     MessageBox.Show("遺失了某些音訊。", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-
-            if (needTochange)
+            else if (needTochange)
             {
+                axWMP_sound.settings.autoStart = false;
+                axWMP_sound.settings.setMode("loop", false);
+                axWMP_sound.Ctlcontrols.stop();
+                
                 try
                 {
                     HonnmaruPictureBox.Image = Image.FromFile(DataPath + HonnmaruDataPath);
@@ -1295,8 +1346,9 @@ namespace TourabuTool
         //           春季、立春-梅：鳥鳴
         //           夏夜：蟲鳴
         //           夏季：風鈴
+        //           立夏-藤：河水聲(loop)
         //           撒豆驅鬼節：鴉鳴
-        // 雨季因為是loop的關係，在本丸環境設置時即完成，不會在此設定
+        // 其中loop在在本丸環境設置時即完成，不會在此設定
         private void SoundSet()
         {
             axWMP_sound.settings.autoStart = false;

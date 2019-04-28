@@ -19,7 +19,10 @@ namespace TourabuTool
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
             // 2019/2/22修正了讀取模擬通路資料時的部分錯誤
-            InformationTextBox.Text = "2019年4月27日" + "\r\n" +
+            InformationTextBox.Text = "2019年4月28日" + "\r\n" +
+                                      "模擬通路：增加景趣與更多刀男資料。" + "\r\n\r\n" + 
+                                      
+                                      "2019年4月27日" + "\r\n" +
                                       "新增刀男：166 南海太郎朝尊。" + "\r\n" +
                                       "新增刀男：168 肥前忠広。" + "\r\n" +
                                       "模擬通路：增加更多刀男資料。" + "\r\n\r\n" +
