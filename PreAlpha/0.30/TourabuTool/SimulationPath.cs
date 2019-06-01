@@ -815,8 +815,7 @@ namespace TourabuTool
             }
             catch
             {
-                // 沒有該音訊檔，則每分鐘再檢查一次
-                AlwaysSoundIntervalMin = 60;
+                // do nothings
             }
         }
         // 隨機取得時間間隔點，單位分鐘
@@ -846,9 +845,18 @@ namespace TourabuTool
 
             try
             {
-                String VoicePath = DataPath + HonnmaruNow + "\\time.mp3";
-                axWMP_voice.URL = VoicePath;
-                axWMP_voice.Ctlcontrols.play();
+                if (HonnmaruNow == "Default")
+                {
+                    String VoicePath = DataPath + HonnmaruNow + "\\sound_2.mp3";
+                    axWMP_voice.URL = VoicePath;
+                    axWMP_voice.Ctlcontrols.play();
+                }
+                else
+                {
+                    String VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\sound_2.mp3";
+                    axWMP_voice.URL = VoicePath;
+                    axWMP_voice.Ctlcontrols.play();
+                }
             }
             catch
             {
@@ -874,15 +882,36 @@ namespace TourabuTool
 
             if (num == 1)
             {
-                VoicePath = DataPath + HonnmaruNow + "\\touch_1.mp3";
+                if (HonnmaruNow == "Default")
+                {
+                    VoicePath = DataPath + HonnmaruNow + "\\touch_1.mp3";
+                }
+                else
+                {
+                    VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\touch_1.mp3";
+                }
             }
             else if (num == 2)
             {
-                VoicePath = DataPath + HonnmaruNow + "\\touch_2.mp3";
+                if (HonnmaruNow == "Default")
+                {
+                    VoicePath = DataPath + HonnmaruNow + "\\touch_2.mp3";
+                }
+                else
+                {
+                    VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\touch_2.mp3";
+                }
             }
             else
             {
-                VoicePath = DataPath + HonnmaruNow + "\\touch_3.mp3";
+                if (HonnmaruNow == "Default")
+                {
+                    VoicePath = DataPath + HonnmaruNow + "\\touch_3.mp3";
+                }
+                else
+                {
+                    VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\touch_3.mp3";
+                }
             }
 
             try
