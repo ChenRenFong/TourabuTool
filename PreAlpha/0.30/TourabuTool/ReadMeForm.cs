@@ -18,7 +18,7 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2019年6月1日" + "\r\n" +
+            InformationTextBox.Text = "2019年6月2日" + "\r\n" +
                                       "改版：0.30：" + "\r\n" +
                                       "模擬通路：因應官方改動為html5，這裡也大幅改動其使用方法與模式。" + "\r\n\r\n" +
                                       

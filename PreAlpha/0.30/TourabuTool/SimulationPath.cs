@@ -815,7 +815,8 @@ namespace TourabuTool
             }
             catch
             {
-                // do nothings
+                // 沒有該音訊檔，則每分鐘再檢查一次
+                AlwaysSoundIntervalMin = 60;
             }
         }
         // 隨機取得時間間隔點，單位分鐘
