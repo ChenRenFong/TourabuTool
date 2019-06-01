@@ -1,0 +1,51 @@
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\bin\Debug\TourabuTool.exe.config
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\bin\Debug\TourabuTool.exe
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\bin\Debug\TourabuTool.pdb
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\obj\x86\Debug\TourabuTool.Properties.Resources.resources
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\obj\x86\Debug\TourabuTool.csproj.GenerateResource.Cache
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\obj\x86\Debug\TourabuTool.exe
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\obj\x86\Debug\TourabuTool.pdb
+C:\Users\鳳姊姊\AppData\Local\Temporary Projects\TourabuTool\obj\x86\Debug\TourabuTool.MainForm.resources
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\TourabuTool.exe.config
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.exe
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.pdb
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\TourabuTool.exe
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\TourabuTool.pdb
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.MainForm.resources
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.Properties.Resources.resources
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.csproj.GenerateResource.Cache
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.ReadMeForm.resources
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.BetForm.resources
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.AskForm.resources
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.csprojResolveAssemblyReference.cache
+C:\Users\鳳姊姊\documents\visual studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.BallotForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\TourabuTool.exe.config
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.exe
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.pdb
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\TourabuTool.exe
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\TourabuTool.pdb
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.csprojResolveAssemblyReference.cache
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.AskForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.BallotForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.BetForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.MainForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.Properties.Resources.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.ReadMeForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.csproj.GenerateResource.Cache
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.AskFormSetting.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.ComputeForm.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.ComputeFormFunction.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\Interop.ShockwaveFlashObjects.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\AxInterop.ShockwaveFlashObjects.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\Interop.ShockwaveFlashObjects.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\AxInterop.ShockwaveFlashObjects.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.csproj.ResolveComReference.cache
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.SimulationPath.resources
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\Interop.WMPLib.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\AxInterop.WMPLib.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\Interop.WMPLib.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\policy.2.0.taglib-sharp.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\taglib-sharp.dll
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\bin\Debug\policy.2.0.taglib-sharp.config
+C:\Users\ChenRenFong\Documents\Visual Studio 2010\Projects\TourabuTool\TourabuTool\obj\x86\Debug\TourabuTool.SimulationPathTutorial.resources
