@@ -847,13 +847,13 @@ namespace TourabuTool
             {
                 if (HonnmaruNow == "Default")
                 {
-                    String VoicePath = DataPath + HonnmaruNow + "\\sound_2.mp3";
+                    String VoicePath = DataPath + HonnmaruNow + "\\time.mp3";
                     axWMP_voice.URL = VoicePath;
                     axWMP_voice.Ctlcontrols.play();
                 }
                 else
                 {
-                    String VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\sound_2.mp3";
+                    String VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\time.mp3";
                     axWMP_voice.URL = VoicePath;
                     axWMP_voice.Ctlcontrols.play();
                 }
