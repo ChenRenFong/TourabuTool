@@ -243,13 +243,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1024, 657);
+            this.Controls.Add(this.HonnmaruPictureBox);
             this.Controls.Add(this.TutorialLabel);
             this.Controls.Add(this.TutorialButton);
             this.Controls.Add(this.UiShowLabel);
             this.Controls.Add(this.VolumeLabel);
             this.Controls.Add(this.SoundCheckBox);
             this.Controls.Add(this.VoiceCheckBox);
-            this.Controls.Add(this.HonnmaruPictureBox);
             this.Controls.Add(this.HonnmaruComboBox);
             this.Controls.Add(this.VolumeTrackBar);
             this.Controls.Add(this.axWMP_voice);

@@ -18,11 +18,11 @@ namespace TourabuTool
         String HonnmaruNow;
         String SoundDataPath;
         // 放置語音間隔，單位分鐘
-        int VoiceIntervalMin = 5;
-        int VoiceIntervalMax = 40;
+        int VoiceIntervalMin = 3;
+        int VoiceIntervalMax = 10;
         // 音效間隔，單位分鐘
-        int SoundIntervalMin = 5;
-        int SoundIntervalMax = 40;
+        int SoundIntervalMin = 3;
+        int SoundIntervalMax = 20;
         // 常駐音效間隔，單位秒
         int Interval = 0;
         int AlwaysSoundIntervalMin = 1;
@@ -48,7 +48,7 @@ namespace TourabuTool
             HonnmaruComboBox.Text = MainForm.mySettings.HonnmaruStatusSetting;
             HonnmaruSet();
 
-            // 計時器，用於放置語音，隨機間隔每5~40分鐘一次
+            // 計時器，用於放置語音，隨機間隔每3~10分鐘一次
             VoiceTimer.Interval = GetIntervalTime(VoiceIntervalMin, VoiceIntervalMax);
             VoiceTimer.Start();
 
@@ -56,7 +56,7 @@ namespace TourabuTool
             RealTimeTimer.Interval = 1 * 60 * 1000;
             RealTimeTimer.Start();
 
-            // 計時器，處理背景音效，隨機間隔每5~40分鐘一次
+            // 計時器，處理背景音效，隨機間隔每3~20分鐘一次
             SoundTimer.Interval = GetIntervalTime(SoundIntervalMin, SoundIntervalMax);
             SoundTimer.Start();
 
@@ -151,7 +151,7 @@ namespace TourabuTool
 
                 // 目前的設計：6月：雨or晴→夏夜
                 //             7月：夏→夏夜
-                //             8月：夏→夏夜，8/7~8/9：立秋-向日葵→夏夜
+                //             8月：夏→夏夜，8/7~8/9：立秋-向日葵→夏夜，8/23~8/24：處暑-秋櫻→夏夜
                 //             9月：秋→十五夜
                 //             10月：秋→秋夜
                 //             11月：秋→秋夜，11/7~11/8：立冬-菊→秋夜
@@ -168,7 +168,7 @@ namespace TourabuTool
                 if (month == 6)
                 {
                     // 白天or夜晚
-                    if (hour >= 5 && hour <= 19)
+                    if (hour >= 5 && hour < 19)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "雨季" && HonnmaruNow != "雨季-晴")
@@ -207,7 +207,7 @@ namespace TourabuTool
                 else if (month == 7)
                 {
                     // 白天or夜晚
-                    if (hour >= 5 && hour <= 19)
+                    if (hour >= 5 && hour < 19)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "夏季")
@@ -233,7 +233,7 @@ namespace TourabuTool
                 else if (month == 8)
                 {
                     // 白天or夜晚
-                    if (hour >= 5 && hour <= 19)
+                    if (hour >= 5 && hour < 19)
                     {
                         // 是否是特殊節日
                         if (day == 7 || day == 8 || day == 9)
@@ -245,6 +245,17 @@ namespace TourabuTool
 
                                 HonnmaruDataPath = "RealWorldTime\\立秋-向日葵\\景趣.png";
                                 HonnmaruNow = "立秋-向日葵";
+                            }
+                        }
+                        else if (day == 23 || day == 24)
+                        {
+                            // 先判斷使否已經是目標佈景，否才須要換
+                            if (HonnmaruNow != "處暑-秋櫻")
+                            {
+                                needTochange = true;
+
+                                HonnmaruDataPath = "RealWorldTime\\處暑-秋櫻\\景趣.png";
+                                HonnmaruNow = "處暑-秋櫻";
                             }
                         }
                         else
@@ -274,7 +285,7 @@ namespace TourabuTool
                 else if (month == 9)
                 {
                     // 白天or夜晚
-                    if (hour >= 6 && hour <= 18)
+                    if (hour >= 6 && hour < 18)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "秋季")
@@ -300,7 +311,7 @@ namespace TourabuTool
                 else if (month == 10)
                 {
                     // 白天or夜晚
-                    if (hour >= 6 && hour <= 18)
+                    if (hour >= 6 && hour < 18)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "秋季")
@@ -326,7 +337,7 @@ namespace TourabuTool
                 else if (month == 11)
                 {
                     // 白天or夜晚
-                    if (hour >= 6 && hour <= 18)
+                    if (hour >= 6 && hour < 18)
                     {
                         // 是否是特殊節日
                         if (day == 7 || day == 8)
@@ -367,7 +378,7 @@ namespace TourabuTool
                 else if (month == 12)
                 {
                     // 白天or夜晚
-                    if (hour >= 7 && hour <= 17)
+                    if (hour >= 7 && hour < 17)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "冬季")
@@ -416,7 +427,7 @@ namespace TourabuTool
                 else if (month == 1)
                 {
                     // 白天or夜晚
-                    if (hour >= 7 && hour <= 17)
+                    if (hour >= 7 && hour < 17)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "冬季")
@@ -465,7 +476,7 @@ namespace TourabuTool
                 else if (month == 2)
                 {
                     // 白天or夜晚
-                    if (hour >= 7 && hour <= 17)
+                    if (hour >= 7 && hour < 17)
                     {
                         // 是否是特殊節日
                         if (day == 1 || day == 2 || day == 3 || day == 4 || day == 5)
@@ -559,7 +570,7 @@ namespace TourabuTool
                 else if (month == 3)
                 {
                     // 白天or夜晚
-                    if (hour >= 6 && hour <= 18)
+                    if (hour >= 6 && hour < 18)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "春季")
@@ -608,7 +619,7 @@ namespace TourabuTool
                 else if (month == 4)
                 {
                     // 白天or夜晚
-                    if (hour >= 6 && hour <= 18)
+                    if (hour >= 6 && hour < 18)
                     {
                         // 先判斷使否已經是目標佈景，否才須要換
                         if (HonnmaruNow != "春季")
@@ -657,7 +668,7 @@ namespace TourabuTool
                 else if (month == 5)
                 {
                     // 白天or夜晚
-                    if (hour >= 6 && hour <= 18)
+                    if (hour >= 6 && hour < 18)
                     {
                         // 是否是特殊節日
                         if (day == 5 || day == 6 || day == 7)
@@ -728,6 +739,10 @@ namespace TourabuTool
                 try
                 {
                     HonnmaruPictureBox.Image = Image.FromFile(DataPath + HonnmaruDataPath);
+                    AlwaysSoundTimer.Stop();
+                    AlwaysSoundIntervalMin = 1;
+                    AlwaysSoundTimer.Interval = GetIntervalTimeSecond(AlwaysSoundIntervalMin, AlwaysSoundIntervalMin + Interval);
+                    AlwaysSoundTimer.Start();
                 }
                 catch
                 {
@@ -763,6 +778,7 @@ namespace TourabuTool
         //           春季、立春-梅：鳥鳴
         //           夏夜：蟲鳴
         //           夏季：風鈴
+        //           處暑-秋櫻：秋蟬
         //           撒豆驅鬼節：鴉鳴
         private void SoundSet()
         {
@@ -843,24 +859,33 @@ namespace TourabuTool
             axWMP_voice.settings.setMode("loop", false);
             axWMP_voice.Ctlcontrols.stop();
 
-            try
+            // 是否刀刀說話？
+            // 0：不說
+            // 1：說話
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            int talk = rnd.Next(0, 2);
+
+            if (talk == 1) 
             {
-                if (HonnmaruNow == "Default")
+                try
                 {
-                    String VoicePath = DataPath + HonnmaruNow + "\\time.mp3";
-                    axWMP_voice.URL = VoicePath;
-                    axWMP_voice.Ctlcontrols.play();
+                    if (HonnmaruNow == "Default")
+                    {
+                        String VoicePath = DataPath + HonnmaruNow + "\\time.mp3";
+                        axWMP_voice.URL = VoicePath;
+                        axWMP_voice.Ctlcontrols.play();
+                    }
+                    else
+                    {
+                        String VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\time.mp3";
+                        axWMP_voice.URL = VoicePath;
+                        axWMP_voice.Ctlcontrols.play();
+                    }
                 }
-                else
+                catch
                 {
-                    String VoicePath = DataPath + "RealWorldTime\\" + HonnmaruNow + "\\time.mp3";
-                    axWMP_voice.URL = VoicePath;
-                    axWMP_voice.Ctlcontrols.play();
+                    // do nothings
                 }
-            }
-            catch
-            {
-                // do nothings
             }
 
             // 下次的觸發點
