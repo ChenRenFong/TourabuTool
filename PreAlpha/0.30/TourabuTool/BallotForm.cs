@@ -142,6 +142,8 @@ namespace TourabuTool
             List[168, 0] = "肥前忠広";        List[168, 1] = "脇差";     List[168, 2] = "無刀派";
             List[170, 0] = "北谷菜切";        List[170, 1] = "短刀";     List[170, 2] = "無刀派";
             List[172, 0] = "桑名江";          List[172, 1] = "打刀";     List[172, 2] = "江";
+            List[174, 0] = "水心子正秀";      List[174, 1] = "打刀";     List[174, 2] = "無刀派";
+            List[176, 0] = "源清麿";          List[176, 1] = "打刀";     List[176, 2] = "無刀派";
         }
         // 當按鍵點下時，會先檢查當前標籤，再依據標籤執行抽籤動作
         private void BallotButton_Click(object sender, EventArgs e)

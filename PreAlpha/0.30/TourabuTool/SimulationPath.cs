@@ -154,7 +154,7 @@ namespace TourabuTool
                 //             8月：夏→夏夜，8/7~8/9：立秋-向日葵→夏夜，8/23~8/24：處暑-秋櫻→夏夜
                 //             9月：秋→十五夜
                 //             10月：秋→秋夜
-                //             11月：秋→秋夜，11/7~11/8：立冬-菊→秋夜
+                //             11月：秋→秋夜，11/7~11/8：立冬-菊→秋夜，11/21~11/23：小雪-寒樁→秋夜
                 //             12月：冬→冬夜(四種)
                 //             1月：冬→冬夜(四種)
                 //             2月：冬→冬夜(四種)，2/1~2/2：撒豆驅鬼節→冬夜(四種)，2/3~2/5：立春-梅→撒豆驅鬼節→冬夜(四種)
@@ -350,6 +350,13 @@ namespace TourabuTool
                                 HonnmaruDataPath = "RealWorldTime\\立冬-菊\\景趣.png";
                                 HonnmaruNow = "立冬-菊";
                             }
+                        }
+                        else if (day == 21 || day == 22 || day == 23)
+                        {
+                            needTochange = true;
+
+                            HonnmaruDataPath = "RealWorldTime\\小雪-寒樁\\景趣.png";
+                            HonnmaruNow = "小雪-寒樁";
                         }
                         else
                         {
