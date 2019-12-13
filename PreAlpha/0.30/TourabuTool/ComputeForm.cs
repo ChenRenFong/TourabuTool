@@ -16,8 +16,8 @@ namespace TourabuTool
         // 目前所有可出陣地圖的總數量，不含活動地圖
         // +2：6-4地圖有三種變化
         // +2：7-4地圖有三種變化
-        // +1：8圖目前只有一張地圖
-        private const int maps = 7*4 +2 +2 +1;
+        // +2：8圖目前只有二張地圖
+        private const int maps = 7*4 +2 +2 +2;
         // 儲存隊中最高等級刀劍男士與對應的檢非違使經驗值之資料庫資料
         private int[,] PoliceExpList = new int[maxLv, 1];
         // 地圖經驗清單
@@ -207,7 +207,9 @@ namespace TourabuTool
             MapExpList[31, 0] = "7-4-S";    MapExpList[31, 1] = "1200";   MapExpList[31, 2] = "6000";   MapExpList[31, 3] = "4";
             // 8圖
             // 8-1一般戰鬥：750*(8/13) + 800*(5/13)
+            // 8-2一般戰鬥：800*(11/16) + 850*(4/16) + 1000*(1/16)
             MapExpList[32, 0] = "8-1";      MapExpList[32, 1] = "769.2";  MapExpList[32, 2] = "3500";   MapExpList[32, 3] = "6.5";
+            MapExpList[33, 0] = "8-2";      MapExpList[33, 1] = "825";    MapExpList[33, 2] = "4000";   MapExpList[33, 3] = "7";
         }
         // 對界面內容做出初始化設定
         private void InitialSetting()
@@ -234,7 +236,7 @@ namespace TourabuTool
             {
                 MaxMemberLevelComboBox.Items.Add(num.ToString());
             }
-            MaxMemberLevelComboBox.Text = "84";
+            MaxMemberLevelComboBox.Text = "99";
 
             // 使用者操作模式
             OperateComboBox.Items.Add("懶人模式");
@@ -248,8 +250,10 @@ namespace TourabuTool
             {
                 for (int mapNo = 1; mapNo <= 4; mapNo++)
                 {
-                    MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString());
-                    
+                    if ((mapTime != 6 && mapNo != 4) || (mapTime != 7 && mapNo != 4))
+                    {
+                        MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString());
+                    }
                     if (mapTime == 6 && mapNo == 4)
                     {
                         MapComboBox.Items.Add(mapTime.ToString() + "-" + mapNo.ToString() + "-1");
@@ -265,10 +269,11 @@ namespace TourabuTool
                 }
             }
 
-            // 8圖目前只有一張地圖，所以暫時先額外增加
+            // 8圖目前只有二張地圖，所以暫時先額外增加
             MapComboBox.Items.Add("8-1");
+            MapComboBox.Items.Add("8-2");
 
-            MapComboBox.Text = "7-4-L";
+            MapComboBox.Text = "8-2";
 
             // 計算需求
             TypeComboBox.Items.Add("總需時");
