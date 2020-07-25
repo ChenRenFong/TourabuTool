@@ -18,7 +18,7 @@ namespace TourabuTool
         // 全刀劍的相關屬性
         // 0：刀名
         // 1：刀種：短刀，脇差，打刀，太刀，大太刀，槍，薙刀，劍
-        // 2：刀派：無刀派，三條，三池，貞宗，青江，長船，虎徹，村正，古備前，來，兼定，左文字，堀川，粟田口，正宗，江，福岡一文字
+        // 2：刀派：無刀派，三條，三池，貞宗，青江，長船，虎徹，村正，古備前，來，兼定，左文字，堀川，粟田口，正宗，江，福岡一文字，豊後国行平
         private const int attributes = 3;
         // 用於全刀劍的資料庫儲存
         private string[,] List = new string[max, attributes];
@@ -50,6 +50,7 @@ namespace TourabuTool
             TouhaComboBox.Items.Add("正宗");
             TouhaComboBox.Items.Add("江");
             TouhaComboBox.Items.Add("福岡一文字");
+            TouhaComboBox.Items.Add("豊後国行平");
 
             TouhaComboBox.Text = "（不使用）";
         }
@@ -72,6 +73,7 @@ namespace TourabuTool
             List[15, 0] = "ソハヤノツルキ";   List[15, 1] = "太刀";      List[15, 2] = "三池";
             List[17, 0] = "数珠丸恒次";       List[17, 1] = "太刀";      List[17, 2] = "青江";
             List[19, 0] = "にっかり青江";     List[19, 1] = "脇差";      List[19, 2] = "青江";
+            List[21, 0] = "鬼丸国綱";         List[21, 1] = "太刀";      List[21, 2] = "粟田口";
             List[23, 0] = "鳴狐";             List[23, 1] = "打刀";      List[23, 2] = "粟田口";
             List[25, 0] = "一期一振";         List[25, 1] = "太刀";      List[25, 2] = "粟田口";
             List[27, 0] = "鯰尾藤四郎";       List[27, 1] = "脇差";      List[27, 2] = "粟田口";
@@ -148,6 +150,9 @@ namespace TourabuTool
             List[176, 0] = "源清麿";          List[176, 1] = "打刀";     List[176, 2] = "無刀派";
             List[178, 0] = "松井江";          List[178, 1] = "打刀";     List[178, 2] = "江";
             List[180, 0] = "山鳥毛";          List[180, 1] = "太刀";     List[180, 2] = "福岡一文字";
+            List[182, 0] = "古今伝授の太刀";  List[182, 1] = "太刀";     List[182, 2] = "豊後国行平";
+            List[184, 0] = "地蔵行平";        List[184, 1] = "打刀";     List[184, 2] = "豊後国行平";
+            List[186, 0] = "治金丸";          List[186, 1] = "脇差";     List[186, 2] = "無刀派";
         }
         // 當按鍵點下時，會先檢查當前標籤，再依據標籤執行抽籤動作
         private void BallotButton_Click(object sender, EventArgs e)

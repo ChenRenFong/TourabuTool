@@ -18,7 +18,13 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2020年1月19日" + "\r\n" +
+            InformationTextBox.Text = "2020年7月25日" + "\r\n" +
+                                      "新增刀男：21 鬼丸国綱。" + "\r\n" +
+                                      "新增刀男：182 古今伝授の太刀。" + "\r\n" +
+                                      "新增刀男：184 地蔵行平。" + "\r\n" +
+                                      "新增刀男：186 治金丸。" + "\r\n\r\n" + 
+                                      
+                                      "2020年1月19日" + "\r\n" +
                                       "改版：0.40：" + "\r\n" + 
                                       "將與刀劍亂舞遊戲內容無直接聯繫的功能拔除。" + "\r\n\r\n" + 
 
