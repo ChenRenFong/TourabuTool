@@ -18,7 +18,31 @@ namespace TourabuTool
         // 初始便載入的設定與值
         private void ReadMeForm_Load(object sender, EventArgs e)
         {
-            InformationTextBox.Text = "2020年7月25日" + "\r\n" +
+            // 開啟的位置為最後使用關閉時的位置
+            this.Location = MainForm.mySettings.ReadMePosition;
+            // 檢查上次的關閉位置是否為正確的，否則使用預設位置開啟
+            bool correctShow = false;
+            // 無論是否多為螢幕，一個個去檢查是否在正確範圍內
+            for (int i = 0; i < Screen.AllScreens.Length; i++)
+            {
+                if ((this.Location.X > Screen.AllScreens[i].WorkingArea.X && this.Location.X < (Screen.AllScreens[i].WorkingArea.X + Screen.AllScreens[i].WorkingArea.Width)) &&
+                    (this.Location.Y > Screen.AllScreens[i].WorkingArea.Y && this.Location.Y < (Screen.AllScreens[i].WorkingArea.Y + Screen.AllScreens[i].WorkingArea.Height)))
+                {
+                    // 在正確範圍內，即正確顯，只要找到一組正確顯示即可
+                    correctShow = true;
+                    break;
+                }
+            }
+            if (correctShow == false)
+            {
+                this.Location = MainForm.mySettings.DefaultPosition;
+            }
+
+            InformationTextBox.Text = "2020年11月16日" + "\r\n" +
+                                      "新增刀男：188 日光一文字 。" + "\r\n" +
+                                      "新增刀男：190 太閤左文字。" + "\r\n\r\n" +
+                                      
+                                      "2020年7月25日" + "\r\n" +
                                       "新增刀男：21 鬼丸国綱。" + "\r\n" +
                                       "新增刀男：182 古今伝授の太刀。" + "\r\n" +
                                       "新增刀男：184 地蔵行平。" + "\r\n" +

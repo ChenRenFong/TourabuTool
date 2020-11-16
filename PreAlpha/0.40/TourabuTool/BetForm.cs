@@ -18,7 +18,25 @@ namespace TourabuTool
 
         private void BetForm_Load(object sender, EventArgs e)
         {
-
+            // 開啟的位置為最後使用關閉時的位置
+            this.Location = MainForm.mySettings.BetPosition;
+            // 檢查上次的關閉位置是否為正確的，否則使用預設位置開啟
+            bool correctShow = false;
+            // 無論是否多為螢幕，一個個去檢查是否在正確範圍內
+            for (int i = 0; i < Screen.AllScreens.Length; i++)
+            {
+                if ((this.Location.X > Screen.AllScreens[i].WorkingArea.X && this.Location.X < (Screen.AllScreens[i].WorkingArea.X + Screen.AllScreens[i].WorkingArea.Width)) &&
+                    (this.Location.Y > Screen.AllScreens[i].WorkingArea.Y && this.Location.Y < (Screen.AllScreens[i].WorkingArea.Y + Screen.AllScreens[i].WorkingArea.Height)))
+                {
+                    // 在正確範圍內，即正確顯，只要找到一組正確顯示即可
+                    correctShow = true;
+                    break;
+                }
+            }
+            if (correctShow == false)
+            {
+                this.Location = MainForm.mySettings.DefaultPosition;
+            }
         }
         // 有關於每次開起於上次結束的位置
         // 先於專案Settings中新增一個System.Drawing.Point的設定，範圍是User
